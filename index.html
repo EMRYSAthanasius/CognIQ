@@ -56,11 +56,11 @@ h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetic
 .stit{font-size:clamp(22px,5vw,36px);font-weight:700;color:#fff;margin-bottom:36px;line-height:1.15}
 .dcards{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
 .dcards-new{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.dc{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:16px 14px;transition:background .2s}
+.dc{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:24px;transition:background .2s}
 .dc:hover{background:rgba(255,255,255,.18)}
-.dcb{height:3px;border-radius:2px;margin-bottom:12px}
-.dcn{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;color:#fff;margin-bottom:5px;line-height:1.3}
-.dcd{font-family:-apple-system,sans-serif;font-size:10px;color:rgba(255,255,255,.55);line-height:1.5}
+.dcb{height:4px;border-radius:2px;margin-bottom:14px}
+.dcn{font-family:-apple-system,sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.3}
+.dcd{font-family:-apple-system,sans-serif;font-size:13px;color:rgba(255,255,255,.7);line-height:1.5}
 .tbar{background:#fff;border-top:1px solid var(--cr3);border-bottom:1px solid var(--cr3);padding:18px 24px}
 .tin{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px}
 .ti{font-family:-apple-system,sans-serif;font-size:13px;color:#666;display:flex;align-items:center;gap:7px}
@@ -187,7 +187,7 @@ select.fi option{background:#fff;color:#1A1A1A}
 .racts .btn{flex:1;padding:14px 18px;justify-content:center}
 .rdisc{font-family:-apple-system,sans-serif;font-size:11px;color:#bbb;text-align:center;line-height:1.8;margin-top:20px}
 
-@media(max-width:720px){.dcards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.dcards{grid-template-columns:repeat(3,1fr)}; .dcards-new{grid-template-columns:1fr}}
 @media(max-width:520px){
 .pgxs{padding:30px 16px 72px}
 .qbody{padding:32px 16px 24px}
@@ -197,6 +197,7 @@ select.fi option{background:#fff;color:#1A1A1A}
 .pnm{width:84px;font-size:11px}
 .mtx td{width:58px;height:52px;font-size:17px}
 .dcards{grid-template-columns:repeat(2,1fr)}
+.dcards-new{grid-template-columns:1fr}
 .hstats{grid-template-columns:repeat(2,1fr)}
 .hs:nth-child(2){border-right:none}
 .hs:nth-child(n+3){border-top:1.5px solid var(--ln)}
@@ -229,7 +230,7 @@ select.fi option{background:#fff;color:#1A1A1A}
     <div class="hs"><div class="hsn">100</div><div class="hsl">Mean IQ</div></div>
     <div class="hs"><div class="hsn">15</div><div class="hsl">Std Deviation</div></div>
     <div class="hs"><div class="hsn">5000+</div><div class="hsl">Data Points</div></div>
-    <div class="hs"><div class="hsn">3</div><div class="hsl">Core Pillars</div></div>
+    <div class="hs"><div class="hsn">7</div><div class="hsl">Cognitive Domains</div></div>
   </div>
   <button class="btn btl" style="font-size:17px;padding:17px 48px;margin-bottom:64px" onclick="gS('s-setup')">Start Assessment &#8594;</button>
 </div>
@@ -241,12 +242,16 @@ select.fi option{background:#fff;color:#1A1A1A}
 </div>
 <div class="dsec">
   <div class="din">
-    <div class="seye sans">3 Core Pillars</div>
-    <h2 class="stit">What This Assessment Measures</h2>
+    <div class="seye sans">7 Cognitive Domains</div>
+    <h2 class="stit">What This Test Measures</h2>
     <div class="dcards-new">
-      <div class="dc" style="padding:24px;"><div class="dcb" style="background:var(--or);height:4px;"></div><div class="dcn" style="font-size:16px;">Fluid Intelligence</div><div class="dcd" style="font-size:13px;opacity:0.8;">Spatial Visualization, matrices, and abstract reasoning logic identifying patterns and deduction without prior knowledge.</div></div>
-      <div class="dc" style="padding:24px;"><div class="dcb" style="background:var(--ordk);height:4px;"></div><div class="dcn" style="font-size:16px;">Verbal Logic</div><div class="dcd" style="font-size:13px;opacity:0.8;">Language comprehension, vocabulary, and analogies assessing ability to process and articulate complex concepts.</div></div>
-      <div class="dc" style="padding:24px;"><div class="dcb" style="background:var(--tl);height:4px;"></div><div class="dcn" style="font-size:16px;">Quantitative Reasoning</div><div class="dcd" style="font-size:13px;opacity:0.8;">Mathematical sequences, arithmetic logic, and numerical problem solving measuring computational agility.</div></div>
+      <div class="dc"><div class="dcb" style="background:var(--tl);"></div><div class="dcn">Logical &amp; Abstract</div><div class="dcd">Raven-style matrices, series, odd-one-out</div></div>
+      <div class="dc"><div class="dcb" style="background:#2563A8;"></div><div class="dcn">Mathematical</div><div class="dcd">Sequences, word problems, arithmetic logic</div></div>
+      <div class="dc"><div class="dcb" style="background:#C47C20;"></div><div class="dcn">Problem-Solving</div><div class="dcd">LSAT/GMAT constraint &amp; deduction puzzles</div></div>
+      <div class="dc"><div class="dcb" style="background:#7B3FA0;"></div><div class="dcn">Verbal Reasoning</div><div class="dcd">SAT/GRE analogies, synonyms, antonyms</div></div>
+      <div class="dc"><div class="dcb" style="background:#1A7A4A;"></div><div class="dcn">Working Memory</div><div class="dcd">Mental manipulation &amp; transformation</div></div>
+      <div class="dc"><div class="dcb" style="background:#B83232;"></div><div class="dcn">Processing Speed</div><div class="dcd">Pattern scanning &amp; timed comparisons</div></div>
+      <div class="dc"><div class="dcb" style="background:#4338CA;"></div><div class="dcn">Spatial Reasoning</div><div class="dcd">Rotation, folding &amp; 3D perspective</div></div>
     </div>
   </div>
 </div>
