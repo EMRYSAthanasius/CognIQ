@@ -9,27 +9,27 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;color-scheme:light only}
 html{color-scheme:light only;background:#FFFFFF}
-body{font-family:Georgia,"Times New Roman",serif;background:#FFFFFF;color:#1A1A1A;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";background:#FFFFFF;color:#1A1A1A;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 *{color-scheme:light only}
 input,select,button{color-scheme:light only;-webkit-appearance:none;appearance:none}
 :root{
-  --tl:#1C7070;--tldk:#145858;--tllt:#E8F4F4;--tlmd:#C8E6E6;
-  --or:#E07A3C;--ordk:#C4611F;--orlt:#FDF0E8;
-  --ln:#DDD5C8;--ln2:#C8BFB0;--cr:#FAF5EF;--cr2:#F3EDE4;--cr3:#EDE5DA;
-  --sh:0 2px 12px rgba(28,112,112,.08);--shx:0 8px 32px rgba(28,112,112,.12);
+  --tl:#1a2332;--tldk:#111822;--tllt:#e8ebf0;--tlmd:#c4cbd5;
+  --or:#3b5998;--ordk:#2d4373;--orlt:#e9eef6;
+  --ln:#d2d6db;--ln2:#b6bcc6;--cr:#f5f7fa;--cr2:#eaedf3;--cr3:#dfe4ec;
+  --sh:0 2px 12px rgba(26,35,50,.08);--shx:0 8px 32px rgba(26,35,50,.12);
 }
 .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif}
-h1,h2,h3{font-family:Georgia,serif;letter-spacing:-.02em;color:#1A1A1A}
+h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:-.02em;color:#1A1A1A}
 .scr{display:none}
 .scr.on{display:block;animation:fu .35s ease both}
 @keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 /* HEADER */
-.hdr{background:#1C7070;position:sticky;top:0;z-index:300}
+.hdr{background:var(--tl);position:sticky;top:0;z-index:300}
 .hi{max-width:900px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
-.lmark{width:32px;height:32px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:13px;font-weight:700;color:#1C7070;flex-shrink:0}
-.lname{font-family:Georgia,serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.3px}
+.lmark{width:32px;height:32px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:var(--tl);flex-shrink:0}
+.lname{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:-.3px}
 .lname em{font-style:normal;font-weight:400;opacity:.7}
 .hdr-r{font-family:-apple-system,sans-serif;font-size:12px;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:12px;font-variant-numeric:tabular-nums}
 .hdr-r strong{color:#fff}
@@ -37,151 +37,152 @@ h1,h2,h3{font-family:Georgia,serif;letter-spacing:-.02em;color:#1A1A1A}
 
 /* PROGRESS */
 .pw{height:3px;background:rgba(255,255,255,.2);position:sticky;top:60px;z-index:299;display:none}
-.pb{height:100%;background:#E07A3C;transition:width .4s ease;width:0%;box-shadow:0 0 8px rgba(224,122,60,.5)}
+.pb{height:100%;background:var(--or);transition:width .4s ease;width:0%;box-shadow:0 0 8px rgba(224,122,60,.5)}
 
 /* HOME */
 .hero{text-align:center;padding:80px 24px 0;max-width:680px;margin:0 auto;background:#FFFFFF}
-.htag{display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#1C7070;background:#E8F4F4;border:1px solid #C8E6E6;border-radius:100px;padding:6px 16px;margin-bottom:28px}
+.htag{display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--tl);background:var(--tllt);border:1px solid var(--tlmd);border-radius:100px;padding:6px 16px;margin-bottom:28px}
 .hero h1{font-size:clamp(34px,7.5vw,64px);font-weight:700;line-height:1.05;letter-spacing:-.035em;margin-bottom:20px}
-.hero h1 .ac{color:#1C7070}
+.hero h1 .ac{color:var(--tl)}
 .hero-p{font-family:-apple-system,sans-serif;font-size:clamp(14px,2.5vw,17px);color:#666;line-height:1.8;max-width:480px;margin:0 auto 38px}
-.hstats{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid #DDD5C8;border-radius:12px;overflow:hidden;background:#fff;margin:0 auto 44px;max-width:540px;box-shadow:var(–sh)}
-.hs{padding:16px 10px;text-align:center;border-right:1.5px solid #DDD5C8}
+.hstats{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ln);border-radius:12px;overflow:hidden;background:#fff;margin:0 auto 44px;max-width:540px;box-shadow:var(–sh)}
+.hs{padding:16px 10px;text-align:center;border-right:1.5px solid var(--ln)}
 .hs:last-child{border-right:none}
-.hsn{font-size:22px;font-weight:700;color:#1A1A1A;line-height:1;font-family:Georgia,serif}
+.hsn{font-size:22px;font-weight:700;color:#1A1A1A;line-height:1;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .hsl{font-family:-apple-system,sans-serif;font-size:10px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
-.dsec{background:#1C7070;padding:60px 24px}
+.dsec{background:var(--tl);padding:60px 24px}
 .din{max-width:900px;margin:0 auto}
 .seye{font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:10px}
 .stit{font-size:clamp(22px,5vw,36px);font-weight:700;color:#fff;margin-bottom:36px;line-height:1.15}
 .dcards{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+.dcards-new{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .dc{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:16px 14px;transition:background .2s}
 .dc:hover{background:rgba(255,255,255,.18)}
 .dcb{height:3px;border-radius:2px;margin-bottom:12px}
 .dcn{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;color:#fff;margin-bottom:5px;line-height:1.3}
 .dcd{font-family:-apple-system,sans-serif;font-size:10px;color:rgba(255,255,255,.55);line-height:1.5}
-.tbar{background:#fff;border-top:1px solid #EDE5DA;border-bottom:1px solid #EDE5DA;padding:18px 24px}
+.tbar{background:#fff;border-top:1px solid var(--cr3);border-bottom:1px solid var(--cr3);padding:18px 24px}
 .tin{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 28px}
 .ti{font-family:-apple-system,sans-serif;font-size:13px;color:#666;display:flex;align-items:center;gap:7px}
-.tck{width:18px;height:18px;border-radius:50%;background:#E8F4F4;color:#1C7070;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.tck{width:18px;height:18px;border-radius:50%;background:var(--tllt);color:var(--tl);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
 
 /* SETUP */
 .pgxs{max-width:480px;margin:0 auto;padding:52px 24px 100px}
-.scard{background:#fff;border-radius:16px;padding:40px;box-shadow:var(–shx);border:1px solid #EDE5DA}
+.scard{background:#fff;border-radius:16px;padding:40px;box-shadow:var(–shx);border:1px solid var(--cr3)}
 .scard h2{font-size:26px;font-weight:700;margin-bottom:8px}
 .ssub{font-family:-apple-system,sans-serif;font-size:14px;color:#666;line-height:1.7;margin-bottom:28px}
 .fg{margin-bottom:18px}
 .fl{font-family:-apple-system,sans-serif;display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:7px}
-.fi{width:100%;border:1.5px solid #DDD5C8;border-radius:8px;padding:12px 14px;font-size:15px;font-family:-apple-system,sans-serif;color:#1A1A1A;background:#FAF5EF;outline:none;transition:border-color .15s;display:block}
-.fi:focus{border-color:#1C7070;background:#fff}
+.fi{width:100%;border:1.5px solid var(--ln);border-radius:8px;padding:12px 14px;font-size:15px;font-family:-apple-system,sans-serif;color:#1A1A1A;background:var(--cr);outline:none;transition:border-color .15s;display:block}
+.fi:focus{border-color:var(--tl);background:#fff}
 .fi::placeholder{color:#bbb}
 select.fi option{background:#fff;color:#1A1A1A}
-.ntc{background:#FDF0E8;border:1px solid #F5C9A8;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-family:-apple-system,sans-serif;font-size:13px;color:#7A3A10;line-height:1.65}
+.ntc{background:var(--orlt);border:1px solid #F5C9A8;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-family:-apple-system,sans-serif;font-size:13px;color:#7A3A10;line-height:1.65}
 .ntc strong{color:#1A1A1A}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:10px;font-family:-apple-system,sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .18s;-webkit-tap-highlight-color:transparent}
 .btn:active{transform:scale(.97)}
-.btl{background:#1C7070;color:#fff;padding:15px 38px;box-shadow:0 4px 18px rgba(28,112,112,.25)}
-.btl:hover{background:#145858;box-shadow:0 6px 26px rgba(28,112,112,.35);transform:translateY(-1px)}
-.bor{background:#E07A3C;color:#fff;padding:15px 38px;box-shadow:0 4px 18px rgba(224,122,60,.28)}
-.bor:hover{background:#C4611F}
-.bout{background:#fff;color:#1C7070;border:2px solid #1C7070;padding:14px 34px}
-.bout:hover{background:#E8F4F4}
-.bgh{background:transparent;color:#999;border:1.5px solid #DDD5C8;padding:12px 26px;font-size:14px}
-.bgh:hover{border-color:#1C7070;color:#1C7070;background:#E8F4F4}
+.btl{background:var(--tl);color:#fff;padding:15px 38px;box-shadow:0 4px 18px rgba(28,112,112,.25)}
+.btl:hover{background:var(--tldk);box-shadow:0 6px 26px rgba(28,112,112,.35);transform:translateY(-1px)}
+.bor{background:var(--or);color:#fff;padding:15px 38px;box-shadow:0 4px 18px rgba(224,122,60,.28)}
+.bor:hover{background:var(--ordk)}
+.bout{background:#fff;color:var(--tl);border:2px solid var(--tl);padding:14px 34px}
+.bout:hover{background:var(--tllt)}
+.bgh{background:transparent;color:#999;border:1.5px solid var(--ln);padding:12px 26px;font-size:14px}
+.bgh:hover{border-color:var(--tl);color:var(--tl);background:var(--tllt)}
 .bfw{width:100%}
 .mt8{margin-top:8px}
 
 /* TEST */
-.qstrip{background:#fff;border-bottom:1px solid #EDE5DA;padding:12px 24px;position:sticky;top:60px;z-index:200}
+.qstrip{background:#fff;border-bottom:1px solid var(--cr3);padding:12px 24px;position:sticky;top:60px;z-index:200}
 .qsi{max-width:740px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .qtag{font-family:-apple-system,sans-serif;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:100px;color:#fff;white-space:nowrap;flex-shrink:0}
 .qpt{font-family:-apple-system,sans-serif;font-size:12px;color:#999;font-variant-numeric:tabular-nums}
-.qtmr{display:flex;align-items:center;gap:6px;background:#FAF5EF;border:1.5px solid #DDD5C8;border-radius:100px;padding:5px 14px;font-family:-apple-system,sans-serif;font-size:13px;font-weight:700;color:#666;font-variant-numeric:tabular-nums;transition:all .25s;flex-shrink:0}
+.qtmr{display:flex;align-items:center;gap:6px;background:var(--cr);border:1.5px solid var(--ln);border-radius:100px;padding:5px 14px;font-family:-apple-system,sans-serif;font-size:13px;font-weight:700;color:#666;font-variant-numeric:tabular-nums;transition:all .25s;flex-shrink:0}
 .qtmr.warn{color:#B83232;border-color:#F5A8A8;background:#FEF5F5}
-.qtmr.fast{border-color:#E07A3C;color:#E07A3C;background:#FDF0E8}
-.qbody{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 28px;min-height:calc(100vh - 60px - 50px);background:#FAF5EF}
+.qtmr.fast{border-color:var(--or);color:var(--or);background:var(--orlt)}
+.qbody{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px 28px;min-height:calc(100vh - 60px - 50px);background:var(--cr)}
 .qcw{width:100%;max-width:640px;margin:0 auto}
-.qform{text-align:center;font-size:clamp(20px,5vw,34px);font-family:Georgia,serif;font-weight:700;color:#E07A3C;margin-bottom:24px;line-height:1.4;letter-spacing:-.02em}
+.qform{text-align:center;font-size:clamp(20px,5vw,34px);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-weight:700;color:var(--or);margin-bottom:24px;line-height:1.4;letter-spacing:-.02em}
 .qinst{text-align:center;font-family:-apple-system,sans-serif;font-size:clamp(15px,2.8vw,19px);font-weight:700;color:#1A1A1A;margin-bottom:28px;line-height:1.6}
-.memseq{text-align:center;font-family:-apple-system,sans-serif;font-size:clamp(18px,4.5vw,28px);font-weight:800;color:#1C7070;margin-bottom:20px;letter-spacing:4px;padding:20px;background:#E8F4F4;border-radius:12px;border:1.5px solid #C8E6E6}
-.svgq{text-align:center;margin:0 auto 24px;padding:20px;background:#FAFAFA;border:1.5px solid #EDE5DA;border-radius:14px;overflow-x:auto}
+.memseq{text-align:center;font-family:-apple-system,sans-serif;font-size:clamp(18px,4.5vw,28px);font-weight:800;color:var(--tl);margin-bottom:20px;letter-spacing:4px;padding:20px;background:var(--tllt);border-radius:12px;border:1.5px solid var(--tlmd)}
+.svgq{text-align:center;margin:0 auto 24px;padding:20px;background:#FAFAFA;border:1.5px solid var(--cr3);border-radius:14px;overflow-x:auto}
 .spdbadge{text-align:center;margin-bottom:14px}
-.spdbadge span{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#E07A3C;background:#FDF0E8;border:1px solid #F5C9A8;border-radius:100px;padding:4px 12px}
+.spdbadge span{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);background:var(--orlt);border:1px solid #F5C9A8;border-radius:100px;padding:4px 12px}
 .mtxw{overflow-x:auto;margin:0 0 24px;text-align:center}
 .mtx{border-collapse:separate;border-spacing:7px;display:inline-table}
-.mtx td{width:72px;height:64px;text-align:center;vertical-align:middle;border-radius:10px;font-size:22px;font-weight:700;font-family:Georgia,serif;background:#fff;border:1.5px solid #DDD5C8;color:#1A1A1A;box-shadow:0 1px 4px rgba(0,0,0,.05)}
-.mtx td.uk{background:#FAF5EF;border:2px dashed #C8BFB0;color:#C8BFB0;font-size:28px;font-family:-apple-system,sans-serif}
+.mtx td{width:72px;height:64px;text-align:center;vertical-align:middle;border-radius:10px;font-size:22px;font-weight:700;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#fff;border:1.5px solid var(--ln);color:#1A1A1A;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+.mtx td.uk{background:var(--cr);border:2px dashed var(--ln2);color:var(--ln2);font-size:28px;font-family:-apple-system,sans-serif}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
-.opt{background:#fff;border:2px solid #DDD5C8;border-radius:12px;padding:18px 14px;font-family:-apple-system,sans-serif;font-size:15px;font-weight:500;color:#1A1A1A;text-align:center;cursor:pointer;transition:border-color .12s,background .12s,transform .1s;-webkit-tap-highlight-color:transparent;min-height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.05);line-height:1.3}
-.opt:hover{border-color:#1C7070;background:#E8F4F4;transform:translateY(-1px)}
-.opt.ch{border-color:#1C7070;background:#E8F4F4;font-weight:700;box-shadow:0 4px 16px rgba(28,112,112,.18)}
+.opt{background:#fff;border:2px solid var(--ln);border-radius:12px;padding:18px 14px;font-family:-apple-system,sans-serif;font-size:15px;font-weight:500;color:#1A1A1A;text-align:center;cursor:pointer;transition:border-color .12s,background .12s,transform .1s;-webkit-tap-highlight-color:transparent;min-height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.05);line-height:1.3}
+.opt:hover{border-color:var(--tl);background:var(--tllt);transform:translateY(-1px)}
+.opt.ch{border-color:var(--tl);background:var(--tllt);font-weight:700;box-shadow:0 4px 16px rgba(28,112,112,.18)}
 .opt:active{transform:scale(.97)}
-.qfoot{background:#FAF5EF;padding:0 24px 48px;display:flex;justify-content:center}
-.bnext{background:#1C7070;color:#fff;border:none;border-radius:100px;padding:15px 48px;font-family:-apple-system,sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:none;align-items:center;gap:9px;box-shadow:0 4px 18px rgba(28,112,112,.25);transition:all .18s;-webkit-tap-highlight-color:transparent;min-width:200px;justify-content:center}
+.qfoot{background:var(--cr);padding:0 24px 48px;display:flex;justify-content:center}
+.bnext{background:var(--tl);color:#fff;border:none;border-radius:100px;padding:15px 48px;font-family:-apple-system,sans-serif;font-size:15px;font-weight:600;cursor:pointer;display:none;align-items:center;gap:9px;box-shadow:0 4px 18px rgba(28,112,112,.25);transition:all .18s;-webkit-tap-highlight-color:transparent;min-width:200px;justify-content:center}
 .bnext.vis{display:flex;animation:pop .25s cubic-bezier(.34,1.56,.64,1) both}
-.bnext:hover{background:#145858;box-shadow:0 6px 26px rgba(28,112,112,.35);transform:translateY(-1px)}
+.bnext:hover{background:var(--tldk);box-shadow:0 6px 26px rgba(28,112,112,.35);transform:translateY(-1px)}
 .bnext:active{transform:scale(.97)}
 @keyframes pop{from{opacity:0;transform:scale(.75)}to{opacity:1;transform:scale(1)}}
 
 /* RESULTS */
-.rhero{background:#1C7070;color:#fff;text-align:center;padding:52px 24px 44px}
+.rhero{background:var(--tl);color:#fff;text-align:center;padding:52px 24px 44px}
 .rhi{max-width:560px;margin:0 auto}
 .rlb{font-family:-apple-system,sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:12px}
-.rsco{font-family:Georgia,serif;font-size:clamp(88px,21vw,124px);font-weight:700;line-height:1;color:#fff;letter-spacing:-.05em;text-shadow:0 4px 24px rgba(0,0,0,.18)}
+.rsco{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:clamp(88px,21vw,124px);font-weight:700;line-height:1;color:#fff;letter-spacing:-.05em;text-shadow:0 4px 24px rgba(0,0,0,.18)}
 .rcls{display:inline-block;font-family:-apple-system,sans-serif;font-size:clamp(14px,4vw,20px);font-weight:700;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:8px 22px;margin-top:14px;color:#fff}
 .rpct{font-family:-apple-system,sans-serif;font-size:14px;color:rgba(255,255,255,.65);margin-top:8px}
-.rbody{background:#FAF5EF;padding:36px 24px 72px}
+.rbody{background:var(--cr);padding:36px 24px 72px}
 .rbi{max-width:640px;margin:0 auto}
-.rcard{background:#fff;border-radius:14px;padding:26px;margin-bottom:14px;border:1px solid #EDE5DA;box-shadow:var(–sh)}
-.rct{font-family:-apple-system,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid #EDE5DA}
+.rcard{background:#fff;border-radius:14px;padding:26px;margin-bottom:14px;border:1px solid var(--cr3);box-shadow:var(–sh)}
+.rct{font-family:-apple-system,sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--cr3)}
 .gbar{height:9px;border-radius:5px;position:relative;margin:18px 0 10px;background:linear-gradient(90deg,#EF4444 0%,#F97316 20%,#EAB308 42%,#22C55E 62%,#3B82F6 80%,#8B5CF6 100%)}
-.gpin{position:absolute;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid #1C7070;box-shadow:0 2px 10px rgba(28,112,112,.28);transition:left 1.5s cubic-bezier(.34,1.56,.64,1)}
+.gpin{position:absolute;top:50%;transform:translate(-50%,-50%);width:22px;height:22px;border-radius:50%;background:#fff;border:3px solid var(--tl);box-shadow:0 2px 10px rgba(28,112,112,.28);transition:left 1.5s cubic-bezier(.34,1.56,.64,1)}
 .glbs{display:flex;justify-content:space-between;font-family:-apple-system,sans-serif;font-size:10px;color:#aaa}
 /* Score summary chips */
 .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.chip{background:#fff;border:1px solid #EDE5DA;border-radius:12px;padding:18px 10px;text-align:center;box-shadow:var(–sh)}
-.chpn{font-family:Georgia,serif;font-size:28px;font-weight:700;color:#1A1A1A;line-height:1}
+.chip{background:#fff;border:1px solid var(--cr3);border-radius:12px;padding:18px 10px;text-align:center;box-shadow:var(–sh)}
+.chpn{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:28px;font-weight:700;color:#1A1A1A;line-height:1}
 .chpl{font-family:-apple-system,sans-serif;font-size:9px;color:#999;text-transform:uppercase;letter-spacing:1px;margin-top:5px}
 /* Domain percent cards */
 .dom-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.dom-card{background:#fff;border:1px solid #EDE5DA;border-radius:12px;padding:16px 18px;box-shadow:var(–sh)}
+.dom-card{background:#fff;border:1px solid var(--cr3);border-radius:12px;padding:16px 18px;box-shadow:var(–sh)}
 .dom-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .dom-card-name{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:#666;display:flex;align-items:center;gap:7px}
-.dom-card-pct{font-family:Georgia,serif;font-size:28px;font-weight:700;line-height:1}
+.dom-card-pct{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:28px;font-weight:700;line-height:1}
 .dom-label{font-family:-apple-system,sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:8px}
-.dom-track{height:5px;background:#F3EDE4;border-radius:3px;overflow:hidden}
+.dom-track{height:5px;background:var(--cr2);border-radius:3px;overflow:hidden}
 .dom-fill{height:100%;border-radius:3px;width:0%;transition:width 1s ease .3s}
 /* Population comparison */
-.pop-row{padding:11px 0;border-bottom:1px solid #F3EDE4}
+.pop-row{padding:11px 0;border-bottom:1px solid var(--cr2)}
 .pop-row:last-child{border-bottom:none}
 .pop-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
 .pop-name{font-family:-apple-system,sans-serif;font-size:12px;font-weight:700;color:#1A1A1A;display:flex;align-items:center;gap:7px}
-.pop-you{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;color:#1C7070}
-.pop-bars{position:relative;height:10px;background:#F3EDE4;border-radius:5px;overflow:visible}
-.pop-avg-bar{position:absolute;top:0;left:0;height:100%;border-radius:5px;background:#DDD5C8;transition:width 1s ease .5s}
+.pop-you{font-family:-apple-system,sans-serif;font-size:11px;font-weight:800;color:var(--tl)}
+.pop-bars{position:relative;height:10px;background:var(--cr2);border-radius:5px;overflow:visible}
+.pop-avg-bar{position:absolute;top:0;left:0;height:100%;border-radius:5px;background:var(--ln);transition:width 1s ease .5s}
 .pop-you-bar{position:absolute;top:-2px;left:0;height:14px;border-radius:5px;transition:width 1s ease .6s;box-shadow:0 2px 6px rgba(28,112,112,.3)}
-.pop-legend{display:flex;align-items:center;gap:16px;margin-top:14px;padding-top:12px;border-top:1px solid #F3EDE4}
+.pop-legend{display:flex;align-items:center;gap:16px;margin-top:14px;padding-top:12px;border-top:1px solid var(--cr2)}
 .pop-leg-item{display:flex;align-items:center;gap:6px;font-family:-apple-system,sans-serif;font-size:11px;color:#666}
 .pop-leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
 /* Per-row perf bars */
-.prow{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #F3EDE4}
+.prow{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--cr2)}
 .prow:last-child{border-bottom:none}
 .pnm{font-family:-apple-system,sans-serif;font-size:12px;font-weight:600;width:110px;flex-shrink:0;display:flex;align-items:center;gap:7px;color:#1A1A1A}
 .pdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.ptrk{flex:1;height:5px;background:#F3EDE4;border-radius:3px;overflow:hidden}
+.ptrk{flex:1;height:5px;background:var(--cr2);border-radius:3px;overflow:hidden}
 .pfill{height:100%;border-radius:3px;width:0%;transition:width 1s ease .35s}
 .psc{font-family:-apple-system,sans-serif;font-size:11px;color:#999;width:30px;text-align:right;flex-shrink:0}
 .reft{width:100%;border-collapse:collapse;font-family:-apple-system,sans-serif;font-size:13px}
-.reft tr{border-bottom:1px solid #F3EDE4}
+.reft tr{border-bottom:1px solid var(--cr2)}
 .reft tr:last-child{border-bottom:none}
 .reft td{padding:10px 8px;color:#999;vertical-align:middle}
 .reft td:first-child{font-weight:700;color:#1A1A1A;width:90px;font-variant-numeric:tabular-nums}
 .reft td:last-child{text-align:right;font-size:11px}
-.reft tr.hl{background:#E8F4F4}
+.reft tr.hl{background:var(--tllt)}
 .reft tr.hl td{color:#1A1A1A;font-weight:600}
-.reft tr.hl td:first-child{color:#1C7070;font-weight:800}
+.reft tr.hl td:first-child{color:var(--tl);font-weight:800}
 .racts{display:flex;gap:10px;margin-top:22px}
 .racts .btn{flex:1;padding:14px 18px;justify-content:center}
 .rdisc{font-family:-apple-system,sans-serif;font-size:11px;color:#bbb;text-align:center;line-height:1.8;margin-top:20px}
@@ -198,7 +199,7 @@ select.fi option{background:#fff;color:#1A1A1A}
 .dcards{grid-template-columns:repeat(2,1fr)}
 .hstats{grid-template-columns:repeat(2,1fr)}
 .hs:nth-child(2){border-right:none}
-.hs:nth-child(n+3){border-top:1.5px solid #DDD5C8}
+.hs:nth-child(n+3){border-top:1.5px solid var(--ln)}
 .dom-grid{grid-template-columns:1fr}
 }
 </style>
@@ -221,38 +222,38 @@ select.fi option{background:#fff;color:#1A1A1A}
 
 <div id="s-home" class="scr on">
 <div class="hero">
-  <div class="htag">&#9733; Free Adaptive IQ Assessment</div>
-  <h1>Discover Your<br><span class="ac">True Intelligence</span></h1>
-  <p class="hero-p sans">60 questions across 7 cognitive domains, calibrated to match standardised psychometric assessments. Age-adjusted scoring. Instant results. No signup.</p>
+  <div class="htag">&#9733; Accurate &amp; Standardised</div>
+  <h1>Cognitive Assessment<br><span class="ac">Platform</span></h1>
+  <p class="hero-p sans">Rigorously calibrated to match clinical psychometric standards. Measures Fluid Intelligence, Quantitative Reasoning, and Spatial Visualization with a normalized bell curve distribution.</p>
   <div class="hstats">
-    <div class="hs"><div class="hsn">60</div><div class="hsl">Questions</div></div>
-    <div class="hs"><div class="hsn">7</div><div class="hsl">Domains</div></div>
-    <div class="hs"><div class="hsn">3</div><div class="hsl">Difficulty Tiers</div></div>
-    <div class="hs"><div class="hsn">Free</div><div class="hsl">No Signup</div></div>
+    <div class="hs"><div class="hsn">100</div><div class="hsl">Mean IQ</div></div>
+    <div class="hs"><div class="hsn">15</div><div class="hsl">Std Deviation</div></div>
+    <div class="hs"><div class="hsn">5000+</div><div class="hsl">Data Points</div></div>
+    <div class="hs"><div class="hsn">3</div><div class="hsl">Core Pillars</div></div>
   </div>
-  <button class="btn btl" style="font-size:17px;padding:17px 48px;margin-bottom:64px" onclick="gS('s-setup')">Test Yourself &#8594;</button>
+  <button class="btn btl" style="font-size:17px;padding:17px 48px;margin-bottom:64px" onclick="gS('s-setup')">Start Assessment &#8594;</button>
+</div>
+<div class="tbar" style="background:var(--cr);">
+  <div class="tin" style="flex-direction:column;align-items:center;text-align:center;padding:20px 0;">
+    <h2 style="font-size:22px;margin-bottom:12px;">Test Methodology</h2>
+    <p class="sans" style="font-size:15px;color:#666;max-width:600px;line-height:1.6;">Our cognitive assessment utilizes an adaptive engine pulling from a database of over <strong>5,000+ categorized questions</strong>. This robust methodology ensures each test-taker receives a unique, statistically valid assessment scaled against global demographic distributions.</p>
+  </div>
 </div>
 <div class="dsec">
   <div class="din">
-    <div class="seye sans">7 Cognitive Domains</div>
-    <h2 class="stit">What This Test Measures</h2>
-    <div class="dcards">
-      <div class="dc"><div class="dcb" style="background:#1C7070"></div><div class="dcn">Logical &amp; Abstract</div><div class="dcd">Raven-style matrices, series, odd-one-out</div></div>
-      <div class="dc"><div class="dcb" style="background:#2563A8"></div><div class="dcn">Mathematical</div><div class="dcd">Sequences, word problems, arithmetic logic</div></div>
-      <div class="dc"><div class="dcb" style="background:#C47C20"></div><div class="dcn">Problem-Solving</div><div class="dcd">LSAT/GMAT constraint &amp; deduction puzzles</div></div>
-      <div class="dc"><div class="dcb" style="background:#7B3FA0"></div><div class="dcn">Verbal Reasoning</div><div class="dcd">SAT/GRE analogies, synonyms, antonyms</div></div>
-      <div class="dc"><div class="dcb" style="background:#1A7A4A"></div><div class="dcn">Working Memory</div><div class="dcd">Mental manipulation &amp; transformation</div></div>
-      <div class="dc"><div class="dcb" style="background:#B83232"></div><div class="dcn">Processing Speed</div><div class="dcd">Pattern scanning &amp; timed comparisons</div></div>
-      <div class="dc"><div class="dcb" style="background:#4338CA"></div><div class="dcn">Spatial Reasoning</div><div class="dcd">Rotation, folding &amp; 3D perspective</div></div>
+    <div class="seye sans">3 Core Pillars</div>
+    <h2 class="stit">What This Assessment Measures</h2>
+    <div class="dcards-new">
+      <div class="dc" style="padding:24px;"><div class="dcb" style="background:var(--or);height:4px;"></div><div class="dcn" style="font-size:16px;">Fluid Intelligence</div><div class="dcd" style="font-size:13px;opacity:0.8;">Spatial Visualization, matrices, and abstract reasoning logic identifying patterns and deduction without prior knowledge.</div></div>
+      <div class="dc" style="padding:24px;"><div class="dcb" style="background:var(--ordk);height:4px;"></div><div class="dcn" style="font-size:16px;">Verbal Logic</div><div class="dcd" style="font-size:13px;opacity:0.8;">Language comprehension, vocabulary, and analogies assessing ability to process and articulate complex concepts.</div></div>
+      <div class="dc" style="padding:24px;"><div class="dcb" style="background:var(--tl);height:4px;"></div><div class="dcn" style="font-size:16px;">Quantitative Reasoning</div><div class="dcd" style="font-size:13px;opacity:0.8;">Mathematical sequences, arithmetic logic, and numerical problem solving measuring computational agility.</div></div>
     </div>
   </div>
 </div>
-<div class="tbar">
-  <div class="tin">
-    <div class="ti"><div class="tck">&#10003;</div>Easy &#8594; Medium &#8594; Hard progression</div>
-    <div class="ti"><div class="tck">&#10003;</div>Randomised within each tier</div>
-    <div class="ti"><div class="tck">&#10003;</div>Age-adjusted Wechsler scale</div>
-    <div class="ti"><div class="tck">&#10003;</div>Full score breakdown at end</div>
+<div class="tbar" style="padding:40px 24px;">
+  <div class="tin" style="max-width:800px;text-align:center;flex-direction:column;gap:16px;">
+    <h3 style="font-size:20px;">Scientific Basis</h3>
+    <p class="sans" style="font-size:14px;color:#666;line-height:1.6;">Scores are calculated utilizing a normalized bell curve distribution with a standard deviation (SD) of 15. Your result positions you accurately against global demographic percentiles, ensuring a rigorously precise and clinical-grade IQ estimation.</p>
   </div>
 </div>
 </div>
@@ -278,7 +279,7 @@ select.fi option{background:#fff;color:#1A1A1A}
 
 <!-- TEST -->
 
-<div id="s-test" class="scr" style="background:#FAF5EF">
+<div id="s-test" class="scr" style="background:var(--cr)">
   <div class="qstrip" id="qstrip">
     <div class="qsi">
       <span class="qtag" id="qtag">Loading</span>
@@ -321,8 +322,8 @@ select.fi option{background:#fff;color:#1A1A1A}
       <div class="rct sans">How You Compare to Other Test-Takers</div>
       <div id="pop-rows"></div>
       <div class="pop-legend">
-        <div class="pop-leg-item"><div class="pop-leg-dot" style="background:#DDD5C8"></div>Average test-taker</div>
-        <div class="pop-leg-item"><div class="pop-leg-dot" style="background:#1C7070"></div>Your score</div>
+        <div class="pop-leg-item"><div class="pop-leg-dot" style="background:var(--ln)"></div>Average test-taker</div>
+        <div class="pop-leg-item"><div class="pop-leg-dot" style="background:var(--tl)"></div>Your score</div>
       </div>
     </div>
     <!-- IQ table -->
@@ -343,22 +344,22 @@ select.fi option{background:#fff;color:#1A1A1A}
 var SVGS = {
   arrow_up: function() {
     return '<svg viewBox="0 0 160 180" width="140" height="160" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">'
-      + '<polygon points="80,14 128,80 100,80 100,160 60,160 60,80 32,80" fill="#1C7070" stroke="#145858" stroke-width="2"/>'
+      + '<polygon points="80,14 128,80 100,80 100,160 60,160 60,80 32,80" fill="var(--tl)" stroke="var(--tldk)" stroke-width="2"/>'
       + '<text x="80" y="178" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#999">Original arrow</text>'
       + '</svg>';
   },
   cube_staircase: function() {
     return '<svg viewBox="0 0 220 170" width="220" height="170" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">'
       + '<g transform="translate(18,10)">'
-      + '<polygon points="0,90 50,65 100,90 50,115" fill="#C8E6E6" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="0,90 0,110 50,135 50,115" fill="#1C7070" stroke="#145858" stroke-width="1.5"/>'
-      + '<polygon points="100,90 100,110 50,135 50,115" fill="#5BA8A8" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="0,68 50,43 100,68 50,93" fill="#C8E6E6" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="0,68 0,90 50,115 50,93" fill="#1C7070" stroke="#145858" stroke-width="1.5"/>'
-      + '<polygon points="100,68 100,90 50,115 50,93" fill="#5BA8A8" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="50,43 100,18 150,43 100,68" fill="#C8E6E6" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="50,43 50,68 100,93 100,68" fill="#5BA8A8" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="150,43 150,68 100,93 100,68" fill="#5BA8A8" stroke="#1C7070" stroke-width="1.5"/>'
+      + '<polygon points="0,90 50,65 100,90 50,115" fill="var(--tlmd)" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="0,90 0,110 50,135 50,115" fill="var(--tl)" stroke="var(--tldk)" stroke-width="1.5"/>'
+      + '<polygon points="100,90 100,110 50,135 50,115" fill="#5BA8A8" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="0,68 50,43 100,68 50,93" fill="var(--tlmd)" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="0,68 0,90 50,115 50,93" fill="var(--tl)" stroke="var(--tldk)" stroke-width="1.5"/>'
+      + '<polygon points="100,68 100,90 50,115 50,93" fill="#5BA8A8" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="50,43 100,18 150,43 100,68" fill="var(--tlmd)" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="50,43 50,68 100,93 100,68" fill="#5BA8A8" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="150,43 150,68 100,93 100,68" fill="#5BA8A8" stroke="var(--tl)" stroke-width="1.5"/>'
       + '</g>'
       + '<text x="110" y="165" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#999">3-step staircase (count all hidden cubes)</text>'
       + '</svg>';
@@ -366,53 +367,53 @@ var SVGS = {
   cross_net: function() {
     return '<svg viewBox="0 0 250 190" width="250" height="190" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">'
       + '<g transform="translate(5,5)">'
-      + '<rect x="60" y="0" width="60" height="60" fill="#E8F4F4" stroke="#1C7070" stroke-width="2" stroke-dasharray="5,3"/>'
-      + '<rect x="0" y="60" width="60" height="60" fill="#FDF0E8" stroke="#C47C20" stroke-width="2"/>'
-      + '<rect x="60" y="60" width="60" height="60" fill="#E8F4F4" stroke="#1C7070" stroke-width="2"/>'
-      + '<rect x="120" y="60" width="60" height="60" fill="#FDF0E8" stroke="#C47C20" stroke-width="2"/>'
-      + '<rect x="180" y="60" width="60" height="60" fill="#E8F4F4" stroke="#1C7070" stroke-width="2"/>'
-      + '<rect x="60" y="120" width="60" height="60" fill="#FDF0E8" stroke="#C47C20" stroke-width="2"/>'
-      + '<text x="90" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1C7070">Top</text>'
+      + '<rect x="60" y="0" width="60" height="60" fill="var(--tllt)" stroke="var(--tl)" stroke-width="2" stroke-dasharray="5,3"/>'
+      + '<rect x="0" y="60" width="60" height="60" fill="var(--orlt)" stroke="#C47C20" stroke-width="2"/>'
+      + '<rect x="60" y="60" width="60" height="60" fill="var(--tllt)" stroke="var(--tl)" stroke-width="2"/>'
+      + '<rect x="120" y="60" width="60" height="60" fill="var(--orlt)" stroke="#C47C20" stroke-width="2"/>'
+      + '<rect x="180" y="60" width="60" height="60" fill="var(--tllt)" stroke="var(--tl)" stroke-width="2"/>'
+      + '<rect x="60" y="120" width="60" height="60" fill="var(--orlt)" stroke="#C47C20" stroke-width="2"/>'
+      + '<text x="90" y="30" text-anchor="middle" font-family="sans-serif" font-size="12" fill="var(--tl)">Top</text>'
       + '<text x="30" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#C47C20">L</text>'
-      + '<text x="90" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1C7070">Front</text>'
+      + '<text x="90" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="var(--tl)">Front</text>'
       + '<text x="150" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#C47C20">R</text>'
-      + '<text x="210" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1C7070">Back</text>'
+      + '<text x="210" y="95" text-anchor="middle" font-family="sans-serif" font-size="12" fill="var(--tl)">Back</text>'
       + '<text x="90" y="155" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#C47C20">Btm</text>'
       + '</g>'
       + '</svg>';
   },
   lshape: function() {
     return '<svg viewBox="0 0 130 130" width="120" height="120" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">'
-      + '<polygon points="15,15 55,15 55,85 90,85 90,110 15,110" fill="#1C7070" stroke="#145858" stroke-width="2.5"/>'
+      + '<polygon points="15,15 55,15 55,85 90,85 90,110 15,110" fill="var(--tl)" stroke="var(--tldk)" stroke-width="2.5"/>'
       + '<text x="65" y="125" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#999">Original L-shape</text>'
       + '</svg>';
   },
   fold_diagram: function() {
     return '<svg viewBox="0 0 300 110" width="290" height="106" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">'
-      + '<rect x="5" y="10" width="80" height="80" fill="#E8F4F4" stroke="#1C7070" stroke-width="2"/>'
+      + '<rect x="5" y="10" width="80" height="80" fill="var(--tllt)" stroke="var(--tl)" stroke-width="2"/>'
       + '<text x="45" y="53" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">Original</text>'
       + '<text x="45" y="68" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#666">square</text>'
       + '<text x="103" y="55" text-anchor="middle" font-size="18" fill="#C47C20">&#8594;</text>'
-      + '<rect x="120" y="10" width="40" height="80" fill="#C8E6E6" stroke="#1C7070" stroke-width="2"/>'
-      + '<line x1="140" y1="10" x2="140" y2="90" stroke="#1C7070" stroke-width="1.5" stroke-dasharray="4,3"/>'
+      + '<rect x="120" y="10" width="40" height="80" fill="var(--tlmd)" stroke="var(--tl)" stroke-width="2"/>'
+      + '<line x1="140" y1="10" x2="140" y2="90" stroke="var(--tl)" stroke-width="1.5" stroke-dasharray="4,3"/>'
       + '<text x="140" y="104" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">Fold 1</text>'
       + '<text x="176" y="55" text-anchor="middle" font-size="18" fill="#C47C20">&#8594;</text>'
-      + '<rect x="188" y="10" width="40" height="40" fill="#A8D4D4" stroke="#1C7070" stroke-width="2"/>'
-      + '<line x1="188" y1="30" x2="228" y2="30" stroke="#1C7070" stroke-width="1.5" stroke-dasharray="4,3"/>'
+      + '<rect x="188" y="10" width="40" height="40" fill="#A8D4D4" stroke="var(--tl)" stroke-width="2"/>'
+      + '<line x1="188" y1="30" x2="228" y2="30" stroke="var(--tl)" stroke-width="1.5" stroke-dasharray="4,3"/>'
       + '<text x="208" y="68" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#666">Fold 2</text>'
-      + '<circle cx="220" cy="18" r="5" fill="#E07A3C" stroke="#C4611F" stroke-width="1.5"/>'
-      + '<text x="220" y="87" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#E07A3C">hole</text>'
+      + '<circle cx="220" cy="18" r="5" fill="var(--or)" stroke="var(--ordk)" stroke-width="1.5"/>'
+      + '<text x="220" y="87" text-anchor="middle" font-family="sans-serif" font-size="10" fill="var(--or)">hole</text>'
       + '</svg>';
   },
   top_view_object: function() {
     return '<svg viewBox="0 0 200 170" width="190" height="160" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto">'
       + '<g transform="translate(18,10)">'
-      + '<polygon points="20,90 85,58 150,90 85,122" fill="#C8E6E6" stroke="#1C7070" stroke-width="2"/>'
-      + '<polygon points="20,90 20,110 85,142 85,122" fill="#1C7070" stroke="#145858" stroke-width="1.5"/>'
-      + '<polygon points="150,90 150,110 85,142 85,122" fill="#5BA8A8" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="65,58 85,48 105,58 85,68" fill="#E0F0F0" stroke="#1C7070" stroke-width="1.5"/>'
-      + '<polygon points="65,58 65,78 85,88 85,68" fill="#1C7070" stroke="#145858" stroke-width="1.5" opacity=".85"/>'
-      + '<polygon points="105,58 105,78 85,88 85,68" fill="#5BA8A8" stroke="#1C7070" stroke-width="1.5" opacity=".85"/>'
+      + '<polygon points="20,90 85,58 150,90 85,122" fill="var(--tlmd)" stroke="var(--tl)" stroke-width="2"/>'
+      + '<polygon points="20,90 20,110 85,142 85,122" fill="var(--tl)" stroke="var(--tldk)" stroke-width="1.5"/>'
+      + '<polygon points="150,90 150,110 85,142 85,122" fill="#5BA8A8" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="65,58 85,48 105,58 85,68" fill="#E0F0F0" stroke="var(--tl)" stroke-width="1.5"/>'
+      + '<polygon points="65,58 65,78 85,88 85,68" fill="var(--tl)" stroke="var(--tldk)" stroke-width="1.5" opacity=".85"/>'
+      + '<polygon points="105,58 105,78 85,88 85,68" fill="#5BA8A8" stroke="var(--tl)" stroke-width="1.5" opacity=".85"/>'
       + '</g>'
       + '<text x="100" y="163" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#999">Large base + small raised block on top</text>'
       + '</svg>';
@@ -423,7 +424,7 @@ var SVGS = {
    CATEGORY CONFIG
 ════════════════════════════════════════ */
 var CC={
-  "LA":{bg:"#1C7070",full:"Logical & Abstract"},
+  "LA":{bg:"var(--tl)",full:"Logical & Abstract"},
   "MA":{bg:"#2563A8",full:"Mathematical"},
   "PS":{bg:"#C47C20",full:"Problem-Solving"},
   "VR":{bg:"#7B3FA0",full:"Verbal Reasoning"},
@@ -551,7 +552,7 @@ function doSetup(){
 ════════════════════════════════════════ */
 function renderQ(){
   var q=S.qs[S.idx];
-  var cfg=CC[q.c]||{bg:"#1C7070",full:q.c};
+  var cfg=CC[q.c]||{bg:"var(--tl)",full:q.c};
   S.chosen=null;S.elapsed=0;
 
   /* Header */
@@ -693,7 +694,7 @@ function showResults(){
 
   /* Domain label by score */
   function domLabel(p2){
-    if(p2>=90)return{l:"Exceptional",c:"#145858"};
+    if(p2>=90)return{l:"Exceptional",c:"var(--tldk)"};
     if(p2>=75)return{l:"Above Average",c:"#1A7A4A"};
     if(p2>=55)return{l:"Average",c:"#2563A8"};
     if(p2>=35)return{l:"Below Average",c:"#C47C20"};
