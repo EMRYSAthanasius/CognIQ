@@ -522,13 +522,21 @@ var S={name:"You",age:25,qs:[],idx:0,answers:[],chosen:null,tid:null,elapsed:0};
 ════════════════════════════════════════ */
 function shuf(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
 
+var _gS_cache = null;
 function gS(id){
-  var all=document.querySelectorAll('.scr');
+  if(!_gS_cache) {
+    _gS_cache = {
+      all: document.querySelectorAll('.scr'),
+      pw: document.getElementById('pw'),
+      hr: document.getElementById('hdr-r')
+    };
+  }
+  var all=_gS_cache.all;
   for(var i=0;i<all.length;i++) all[i].classList.remove('on');
   document.getElementById(id).classList.add('on');
   window.scrollTo(0,0);
-  document.getElementById('pw').style.display=(id==='s-test')?'block':'none';
-  var hr=document.getElementById('hdr-r');
+  _gS_cache.pw.style.display=(id==='s-test')?'block':'none';
+  var hr=_gS_cache.hr;
   if(id==='s-results') hr.innerHTML='Assessment Complete';
   else if(id!=='s-test') hr.innerHTML='';
 }
