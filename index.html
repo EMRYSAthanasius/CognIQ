@@ -604,11 +604,13 @@ function startTimer(sec){
   S.tid=setInterval(function(){t--;S.elapsed++;updT(t,sec);if(t<=0){clearInterval(S.tid);if(S.chosen===null)timeUp();}},1000);
 }
 function updT(t,max){
-  var el=document.getElementById('tnum');if(!el)return;
+  var el=S.tnum||(S.tnum=document.getElementById('tnum'));if(!el)return;
   var m=Math.floor(t/60),s=t%60;
   el.textContent=m+':'+(s<10?'0':'')+s;
-  var pill=document.getElementById('qtmr');
-  if(t<=Math.ceil(max*0.25)) pill.classList.add('warn'); else pill.classList.remove('warn');
+  var pill=S.qtmr||(S.qtmr=document.getElementById('qtmr'));
+  if(pill){
+    if(t<=Math.ceil(max*0.25)) pill.classList.add('warn'); else pill.classList.remove('warn');
+  }
 }
 function timeUp(){
   var q=S.qs[S.idx];S.chosen=-1;
