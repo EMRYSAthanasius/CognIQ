@@ -701,6 +701,7 @@ function showResults(){
   }
 
   var grid=document.getElementById('dom-grid');grid.innerHTML='';
+  var gridFrag=document.createDocumentFragment();
   for(var di=0;di<CATS.length;di++){
     var dcat=CATS[di],dpct=catPcts[dcat],dlb=domLabel(dpct),dcfg=CC[dcat];
     var card=document.createElement('div');card.className='dom-card';
@@ -711,8 +712,9 @@ function showResults(){
       +'</div>'
       +'<span class="dom-label sans" style="background:'+dlb.c+'">'+dlb.l+'</span>'
       +'<div class="dom-track"><div class="dom-fill" data-w="'+dpct+'" style="background:'+dcfg.bg+'"></div></div>';
-    grid.appendChild(card);
+    gridFrag.appendChild(card);
   }
+  grid.appendChild(gridFrag);
   /* Animate domain bars */
   setTimeout(function(){
     var df=grid.querySelectorAll('.dom-fill');
@@ -721,6 +723,7 @@ function showResults(){
 
   /* ── Population comparison ───────────────────── */
   var pop=document.getElementById('pop-rows');pop.innerHTML='';
+  var popFrag=document.createDocumentFragment();
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
     /* Derive a "you beat X% of test-takers" stat per domain */
@@ -735,8 +738,9 @@ function showResults(){
         +'<div class="pop-avg-bar" data-w="'+pavg+'"></div>'
         +'<div class="pop-you-bar" data-w="'+pyou+'" style="background:'+pcfg.bg+'"></div>'
       +'</div>';
-    pop.appendChild(row);
+    popFrag.appendChild(row);
   }
+  pop.appendChild(popFrag);
   setTimeout(function(){
     var ab=pop.querySelectorAll('.pop-avg-bar');
     var yb=pop.querySelectorAll('.pop-you-bar');
@@ -756,12 +760,14 @@ function showResults(){
     {r:"Below 70",l:"Below Average",p:"<2.0%",lo:0,hi:69}
   ];
   var tbl=document.getElementById('rref');tbl.innerHTML='';
+  var tblFrag=document.createDocumentFragment();
   for(var ri=0;ri<REFS.length;ri++){
     var rv=REFS[ri],act=(iq>=rv.lo&&iq<=rv.hi);
     var tr2=document.createElement('tr');if(act)tr2.className='hl';
     tr2.innerHTML='<td>'+rv.r+'</td><td>'+rv.l+'</td><td>'+rv.p+'</td>';
-    tbl.appendChild(tr2);
+    tblFrag.appendChild(tr2);
   }
+  tbl.appendChild(tblFrag);
 }
 
 /* ════════════════════════════════════════
