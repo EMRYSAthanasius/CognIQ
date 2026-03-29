@@ -9,9 +9,9 @@ export default function Home() {
     <div id="s-home" className="scr on">
       <div className="hero">
         <div className="htag">&#9733; Accurate &amp; Standardised</div>
-        <h1>
+        <h1 style={{ color: "#0F2C5A" }}>
           Clinical-Grade<br />
-          <span className="ac">Cognitive Assessment</span>
+          <span className="ac" style={{ color: "#0F2C5A" }}>Cognitive Assessment</span>
         </h1>
         <p className="hero-p sans" style={{ color: "#1F2937" }}>
           Measure your fluid intelligence with precision. Our assessment is engineered using psychometric standards to provide an accurate, data-driven analysis of your cognitive profile.

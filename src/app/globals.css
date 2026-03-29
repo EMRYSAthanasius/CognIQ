@@ -34,8 +34,8 @@ h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetic
 /* HOME */
 .hero{text-align:center;padding:80px 24px 0;max-width:680px;margin:0 auto;background:#FFFFFF}
 .htag{display:inline-flex;align-items:center;gap:8px;font-family:-apple-system,sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--tl);background:var(--tllt);border:1px solid var(--tlmd);border-radius:100px;padding:6px 16px;margin-bottom:28px}
-.hero h1{font-size:clamp(34px,7vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.035em;margin-bottom:20px}
-.hero h1 .ac{color:var(--or)}
+.hero h1{font-size:clamp(34px,7vw,56px);font-weight:800;line-height:1.05;letter-spacing:-.035em;margin-bottom:20px;color:#0F2C5A}
+.hero h1 .ac{color:#0F2C5A}
 .hero-p{font-family:-apple-system,sans-serif;font-size:clamp(14px,2.5vw,17px);color:#666;line-height:1.8;max-width:480px;margin:0 auto 38px}
 .hstats{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid var(--ln);border-radius:12px;overflow:hidden;background:#fff;margin:0 auto 44px;max-width:540px;box-shadow:var(--sh)}
 .hs{padding:16px 10px;text-align:center;border-right:1.5px solid var(--ln)}
