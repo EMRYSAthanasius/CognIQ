@@ -667,8 +667,8 @@ function pct(iq){var z=(iq-100)/15;return Math.max(1,Math.min(99,Math.round(100/
 ════════════════════════════════════════ */
 function showResults(){
   gS('s-results');
-  var raw=0,mx=0,tt=0;
-  for(var i=0;i<S.answers.length;i++){raw+=S.answers[i].pts;mx+=S.answers[i].max;tt+=S.answers[i].t;}
+  var raw=0,mx=0;
+  for(var i=0;i<S.answers.length;i++){raw+=S.answers[i].pts;mx+=S.answers[i].max;}
   var iq=calcIQ(raw,mx,S.age),cl=clsIQ(iq),p=pct(iq);
 
   document.getElementById('rlb').textContent=S.name!=='You'?S.name+"'s IQ Result":"Your IQ Result";
