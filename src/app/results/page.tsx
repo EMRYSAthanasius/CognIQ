@@ -71,6 +71,20 @@ export default function ResultsPage() {
             </div>
           </div>
 
+          <div className="dom-grid" id="dom-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "14px" }}>
+            {Object.entries(resultData.catPcts).map(([cat, pct]) => (
+              <div key={cat} className="dom-card" style={{ background: "#fff", border: "1px solid var(--cr3)", borderRadius: "12px", padding: "16px 18px", boxShadow: "var(--sh)" }}>
+                <div className="dom-card-top" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "10px" }}>
+                  <div className="dom-card-name" style={{ fontFamily: "system-ui, sans-serif", fontSize: "11px", fontWeight: "800", textTransform: "uppercase", letterSpacing: "1.2px", color: "#666" }}>{cat}</div>
+                  <div className="dom-card-pct" style={{ fontSize: "28px", fontWeight: "700", lineHeight: "1" }}>{pct}%</div>
+                </div>
+                <div className="dom-track" style={{ height: "5px", background: "var(--cr2)", borderRadius: "3px", overflow: "hidden" }}>
+                  <div className="dom-fill" style={{ height: "100%", borderRadius: "3px", width: `${pct}%`, backgroundColor: pct >= 80 ? "var(--tl)" : pct >= 50 ? "#3B82F6" : "#F59E0B" }}></div>
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="racts" style={{ display: "flex", gap: "10px", marginTop: "22px", flexDirection: "column" }}>
             <button className="btn bout" onClick={() => router.push("/")} style={{ background: "#fff", color: "var(--tl)", border: "2px solid var(--tl)", padding: "14px 34px", borderRadius: "10px", fontWeight: "600", cursor: "pointer", display: "flex", justifyContent: "center" }}>&#8592; Retake Assessment</button>
           </div>

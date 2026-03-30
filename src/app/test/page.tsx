@@ -83,7 +83,11 @@ export default function TestPage() {
     if (idx + 1 >= qs.length) {
       setIsTestOver(true);
       // Storing answers in localStorage to pass to results page
-      localStorage.setItem("testAnswers", JSON.stringify(answers));
+      // Use the latest answers state (we use functional update to get the latest just in case)
+      setAnswers(latestAnswers => {
+        localStorage.setItem("testAnswers", JSON.stringify(latestAnswers));
+        return latestAnswers;
+      });
       localStorage.setItem("testAge", "25"); // Hardcoded for now, normally taken from setup screen
       router.push("/results");
     } else {
