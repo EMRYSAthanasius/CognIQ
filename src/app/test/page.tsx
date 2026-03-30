@@ -88,7 +88,7 @@ export default function TestPage() {
         localStorage.setItem("testAnswers", JSON.stringify(latestAnswers));
         return latestAnswers;
       });
-      localStorage.setItem("testAge", "25"); // Hardcoded for now, normally taken from setup screen
+      // Removing hardcoded age set, it should remain whatever was saved on the home page.
       router.push("/results");
     } else {
       setChosen(null);
