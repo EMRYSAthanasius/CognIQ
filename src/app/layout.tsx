@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Rigorously calibrated to match clinical psychometric standards using a normalized bell curve distribution.",
 };
 
+import GlobalLayout from "@/components/GlobalLayout";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -14,17 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header className="hdr">
-          <div className="hi">
-            <div className="logo">
-              <div className="lmark">IQ</div>
-              <span className="lname">Cogn<em>IQ</em></span>
-            </div>
-            <div className="hdr-r" id="hdr-r"></div>
-          </div>
-        </header>
-        <div className="pw" id="pw"><div className="pb" id="pb"></div></div>
-        {children}
+        <GlobalLayout>{children}</GlobalLayout>
       </body>
     </html>
   );
