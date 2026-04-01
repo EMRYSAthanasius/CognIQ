@@ -5,8 +5,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 *{color-scheme:light only}
 input,select,button{color-scheme:light only;-webkit-appearance:none;appearance:none}
 :root{
-  --tl:#0F2C5A;--tldk:#0A1D3B;--tllt:#E0F8F5;--tlmd:#B3E9E2;
-  --or:#14E0C8;--ordk:#0EB5A1;--orlt:#E6FBF9;
+  --tl:#0F2C5A;--tldk:#0A1D3B;--tllt:#F4F7F6;--tlmd:#B3E9E2;
+  --or:#2D6A7A;--ordk:#0EB5A1;--orlt:#E6FBF9;
   --ln:#d2d6db;--ln2:#b6bcc6;--cr:#f5f7fa;--cr2:#eaedf3;--cr3:#dfe4ec;
   --sh:0 2px 12px rgba(15,44,90,.08);--shx:0 8px 32px rgba(15,44,90,.12);
 }

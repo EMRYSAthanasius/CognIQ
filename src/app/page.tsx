@@ -3,7 +3,7 @@
 import HomeNav from "@/components/HomeNav";
 import Hero from "@/components/Hero";
 import Link from "next/link";
-import { Brain, Fingerprint, Activity, Globe, Users, Target, ShieldCheck, Zap } from "lucide-react";
+import { Hexagon, Network, Box, Fingerprint, Activity, Globe, Users, Target, ShieldCheck, Zap } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function DetailedHomepage() {
@@ -28,7 +28,7 @@ export default function DetailedHomepage() {
       <section id="features" style={{ padding: isMobile ? "80px 24px" : "120px 48px", backgroundColor: "#FFFFFF", borderBottom: "1px solid #E5E7EB" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "64px" }}>
-             <h2 style={{ fontSize: "14px", color: "#14E0C8", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>The Standard</h2>
+             <h2 style={{ fontSize: "14px", color: "#2D6A7A", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>The Standard</h2>
              <h3 style={{ fontSize: isMobile ? "32px" : "40px", color: "#0F2C5A", fontWeight: "800", lineHeight: "1.2" }}>Why Cogn-IQ?</h3>
           </div>
 
@@ -38,25 +38,25 @@ export default function DetailedHomepage() {
             gap: "32px"
           }}>
             {/* Feature 1 */}
-            <div style={{ backgroundColor: "#E0F8F5", padding: "32px", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <div style={{ backgroundColor: "#F4F7F6", padding: "32px", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <div style={{ backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "12px", marginBottom: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
-                <Target color="#0F2C5A" size={28} />
+                <Hexagon color="#0F2C5A" size={28} strokeWidth={1.5} />
               </div>
               <h4 style={{ fontSize: "20px", fontWeight: "700", color: "#0F2C5A", marginBottom: "12px" }}>Precision Accuracy</h4>
               <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Calibrated to clinical SD=15 standard deviations to ensure results map flawlessly to established intelligence demographics.</p>
             </div>
             {/* Feature 2 */}
-            <div style={{ backgroundColor: "#E0F8F5", padding: "32px", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <div style={{ backgroundColor: "#F4F7F6", padding: "32px", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <div style={{ backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "12px", marginBottom: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
-                <ShieldCheck color="#0F2C5A" size={28} />
+                <Box color="#0F2C5A" size={28} strokeWidth={1.5} />
               </div>
               <h4 style={{ fontSize: "20px", fontWeight: "700", color: "#0F2C5A", marginBottom: "12px" }}>Culture Fair</h4>
               <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Matrix reasoning isolates raw fluid intelligence, removing bias from language, education level, and cultural background.</p>
             </div>
             {/* Feature 3 */}
-            <div style={{ backgroundColor: "#E0F8F5", padding: "32px", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+            <div style={{ backgroundColor: "#F4F7F6", padding: "32px", borderRadius: "16px", display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
               <div style={{ backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "12px", marginBottom: "20px", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
-                <Zap color="#0F2C5A" size={28} />
+                <Network color="#0F2C5A" size={28} strokeWidth={1.5} />
               </div>
               <h4 style={{ fontSize: "20px", fontWeight: "700", color: "#0F2C5A", marginBottom: "12px" }}>Adaptive Engine</h4>
               <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>A proprietary bank of 5,000+ questions dynamically adjusts difficulty to rapidly find your exact cognitive threshold.</p>
@@ -71,24 +71,24 @@ export default function DetailedHomepage() {
 
           {/* Left: Global Comparison Data Vis */}
           <div>
-             <h2 style={{ fontSize: "14px", color: "#14E0C8", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>Demographic Analysis</h2>
+             <h2 style={{ fontSize: "14px", color: "#2D6A7A", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>Demographic Analysis</h2>
              <h3 style={{ fontSize: isMobile ? "32px" : "40px", color: "#0F2C5A", fontWeight: "800", marginBottom: "24px", lineHeight: "1.2" }}>Contextualize Your Intellect Globally.</h3>
              <p style={{ fontSize: "16px", color: "#4B5563", lineHeight: "1.8", marginBottom: "32px" }}>
                Our statistical engine maps your raw score against thousands of verified assessments globally. See exactly where your cognitive processing speed and fluid reasoning rank on the world stage.
              </p>
 
              {/* Data List (Mockup of BRGHT style global comp) */}
-             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+             <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                {/* UK */}
                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                  <span style={{ fontSize: "24px" }}>🇬🇧</span>
                  <div style={{ flex: 1 }}>
                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", fontWeight: "600", color: "#0F2C5A" }}>
                      <span>United Kingdom</span>
-                     <span>99.1 Avg</span>
+                     <span style={{ color: "#4B5563" }}>99.1 Avg</span>
                    </div>
-                   <div style={{ width: "100%", height: "8px", backgroundColor: "#E5E7EB", borderRadius: "4px" }}>
-                     <div style={{ width: "78%", height: "100%", backgroundColor: "#0F2C5A", borderRadius: "4px" }}></div>
+                   <div style={{ width: "100%", height: "4px", backgroundColor: "#E5E7EB", borderRadius: "2px" }}>
+                     <div style={{ width: "78%", height: "100%", backgroundColor: "#0F2C5A", borderRadius: "2px" }}></div>
                    </div>
                  </div>
                </div>
@@ -98,10 +98,10 @@ export default function DetailedHomepage() {
                  <div style={{ flex: 1 }}>
                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", fontWeight: "600", color: "#0F2C5A" }}>
                      <span>United States</span>
-                     <span>97.4 Avg</span>
+                     <span style={{ color: "#4B5563" }}>97.4 Avg</span>
                    </div>
-                   <div style={{ width: "100%", height: "8px", backgroundColor: "#E5E7EB", borderRadius: "4px" }}>
-                     <div style={{ width: "70%", height: "100%", backgroundColor: "#14E0C8", borderRadius: "4px" }}></div>
+                   <div style={{ width: "100%", height: "4px", backgroundColor: "#E5E7EB", borderRadius: "2px" }}>
+                     <div style={{ width: "70%", height: "100%", backgroundColor: "#2D6A7A", borderRadius: "2px" }}></div>
                    </div>
                  </div>
                </div>
@@ -111,10 +111,10 @@ export default function DetailedHomepage() {
                  <div style={{ flex: 1 }}>
                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px", fontSize: "14px", fontWeight: "600", color: "#0F2C5A" }}>
                      <span>Japan</span>
-                     <span>105.2 Avg</span>
+                     <span style={{ color: "#4B5563" }}>105.2 Avg</span>
                    </div>
-                   <div style={{ width: "100%", height: "8px", backgroundColor: "#E5E7EB", borderRadius: "4px" }}>
-                     <div style={{ width: "92%", height: "100%", backgroundColor: "#0F2C5A", borderRadius: "4px" }}></div>
+                   <div style={{ width: "100%", height: "4px", backgroundColor: "#E5E7EB", borderRadius: "2px" }}>
+                     <div style={{ width: "92%", height: "100%", backgroundColor: "#0F2C5A", borderRadius: "2px" }}></div>
                    </div>
                  </div>
                </div>
@@ -128,25 +128,27 @@ export default function DetailedHomepage() {
             padding: "48px",
             boxShadow: "0 20px 40px rgba(15, 44, 90, 0.08)",
             border: "1px solid #E5E7EB",
+            backgroundImage: "linear-gradient(#F4F7F6 1px, transparent 1px), linear-gradient(90deg, #F4F7F6 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
             aspectRatio: isMobile ? "auto" : "1/1"
           }}>
-            <Users size={80} color="#14E0C8" style={{ marginBottom: "24px" }} />
+            <Users size={80} color="#2D6A7A" style={{ marginBottom: "24px" }} />
             <h4 style={{ fontSize: "24px", color: "#0F2C5A", fontWeight: "800", marginBottom: "16px", textAlign: "center" }}>Peer Benchmarking</h4>
             <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6", textAlign: "center", marginBottom: "32px" }}>
               Your results are parsed into percentiles, placing you accurately within the standard bell curve of the general population.
             </p>
             <div style={{ width: "100%", height: "120px", display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "8px" }}>
-               <div style={{ width: "16%", height: "20%", backgroundColor: "#E0F8F5", borderRadius: "4px 4px 0 0" }}></div>
+               <div style={{ width: "16%", height: "20%", backgroundColor: "#F4F7F6", borderRadius: "4px 4px 0 0" }}></div>
                <div style={{ width: "16%", height: "50%", backgroundColor: "#A7EBE1", borderRadius: "4px 4px 0 0" }}></div>
-               <div style={{ width: "16%", height: "100%", backgroundColor: "#14E0C8", borderRadius: "4px 4px 0 0", position: "relative" }}>
+               <div style={{ width: "16%", height: "100%", backgroundColor: "#2D6A7A", borderRadius: "4px 4px 0 0", position: "relative" }}>
                  <div style={{ position: "absolute", top: "-30px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#0F2C5A", color: "#FFF", fontSize: "12px", fontWeight: "700", padding: "4px 8px", borderRadius: "4px" }}>YOU</div>
                </div>
                <div style={{ width: "16%", height: "50%", backgroundColor: "#A7EBE1", borderRadius: "4px 4px 0 0" }}></div>
-               <div style={{ width: "16%", height: "20%", backgroundColor: "#E0F8F5", borderRadius: "4px 4px 0 0" }}></div>
+               <div style={{ width: "16%", height: "20%", backgroundColor: "#F4F7F6", borderRadius: "4px 4px 0 0" }}></div>
             </div>
           </div>
 
@@ -156,14 +158,14 @@ export default function DetailedHomepage() {
       {/* E. "Assessment Pillars" Section (Realigned to grid) */}
       <section id="methodology" style={{ padding: isMobile ? "80px 24px" : "120px 48px", maxWidth: "1280px", margin: "0 auto", borderBottom: "1px solid #E5E7EB" }}>
         <div style={{ textAlign: "center", marginBottom: "64px", maxWidth: "800px", margin: "0 auto 64px auto" }}>
-          <h2 style={{ fontSize: "14px", color: "#14E0C8", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>7 Cognitive Domains</h2>
+          <h2 style={{ fontSize: "14px", color: "#2D6A7A", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>7 Cognitive Domains</h2>
           <h3 style={{ fontSize: isMobile ? "32px" : "40px", color: "#0F2C5A", fontWeight: "800", lineHeight: "1.2" }}>What This Test Measures</h3>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
           {/* Logical & Abstract */}
           <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#14E0C8", borderRadius: "0 0 3px 3px" }}></div>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#2D6A7A", borderRadius: "0 0 3px 3px" }}></div>
             <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Logical & Abstract</h4>
             <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Raven-style matrices, series, odd-one-out</p>
           </div>
@@ -212,8 +214,8 @@ export default function DetailedHomepage() {
         </div>
       </section>
 
-      {/* F. Call to Action Banner (Seafoam background #E0F8F5) */}
-      <section style={{ backgroundColor: "#E0F8F5", padding: isMobile ? "80px 24px" : "120px 48px", textAlign: "center" }}>
+      {/* F. Call to Action Banner (Seafoam background #F4F7F6) */}
+      <section style={{ backgroundColor: "#F4F7F6", padding: isMobile ? "80px 24px" : "120px 48px", textAlign: "center" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <h2 style={{ fontSize: isMobile ? "32px" : "48px", color: "#0F2C5A", fontWeight: "800", marginBottom: "24px", letterSpacing: "-1px" }}>
             Explore your cognitive boundaries today.
@@ -224,7 +226,7 @@ export default function DetailedHomepage() {
 
           <Link href="/assessment" style={{ textDecoration: "none" }}>
             <button style={{
-              backgroundColor: "#14E0C8",
+              backgroundColor: "#2D6A7A",
               color: "#FFFFFF",
               border: "none",
               padding: "18px 48px",
@@ -232,16 +234,16 @@ export default function DetailedHomepage() {
               fontSize: "18px",
               fontWeight: "700",
               cursor: "pointer",
-              boxShadow: "0 8px 24px rgba(20, 224, 200, 0.4)",
+              boxShadow: "0 8px 24px rgba(45, 106, 122, 0.4)",
               transition: "transform 0.2s ease, box-shadow 0.2s ease"
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.transform = "translateY(-3px)";
-              e.currentTarget.style.boxShadow = "0 12px 28px rgba(20, 224, 200, 0.5)";
+              e.currentTarget.style.boxShadow = "0 12px 28px rgba(45, 106, 122, 0.5)";
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(20, 224, 200, 0.4)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(45, 106, 122, 0.4)";
             }}
             >
               Begin Assessment

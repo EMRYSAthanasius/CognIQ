@@ -99,7 +99,7 @@ export default function Home() {
 
       <div className="dsec" style={{ background: "#FFFFFF" }}>
         <div className="din">
-          <div className="seye sans" style={{ color: "#14E0C8" }}>7 Cognitive Domains</div>
+          <div className="seye sans" style={{ color: "#2D6A7A" }}>7 Cognitive Domains</div>
           <h2 className="stit" style={{ color: "#0F2C5A" }}>What This Test Measures</h2>
           <div className="dcards-new" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
             <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>

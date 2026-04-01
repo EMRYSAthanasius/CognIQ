@@ -41,7 +41,7 @@ export default function Hero() {
             marginBottom: "24px",
             letterSpacing: "-1.5px"
           }}>
-            Measure Your Mind with <span style={{ color: "#14E0C8" }}>Precision.</span>
+            Measure Your Mind with <span style={{ color: "#2D6A7A" }}>Precision.</span>
           </h1>
 
           <p style={{
@@ -58,7 +58,7 @@ export default function Hero() {
 
           <Link href="/assessment" style={{ textDecoration: "none" }}>
             <button style={{
-              backgroundColor: "#14E0C8", // Mint Teal
+              backgroundColor: "#2D6A7A", // Mint Teal
               color: "#FFFFFF",
               border: "none",
               padding: "18px 40px",
@@ -66,16 +66,16 @@ export default function Hero() {
               fontSize: "18px",
               fontWeight: "700",
               cursor: "pointer",
-              boxShadow: "0 8px 24px rgba(20, 224, 200, 0.4)",
+              boxShadow: "0 8px 24px rgba(45, 106, 122, 0.4)",
               transition: "transform 0.2s ease, box-shadow 0.2s ease"
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.transform = "translateY(-3px)";
-              e.currentTarget.style.boxShadow = "0 12px 28px rgba(20, 224, 200, 0.5)";
+              e.currentTarget.style.boxShadow = "0 12px 28px rgba(45, 106, 122, 0.5)";
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "0 8px 24px rgba(20, 224, 200, 0.4)";
+              e.currentTarget.style.boxShadow = "0 8px 24px rgba(45, 106, 122, 0.4)";
             }}
             >
               Test Your IQ
@@ -95,7 +95,7 @@ export default function Hero() {
             position: "absolute",
             width: isMobile ? "300px" : "450px",
             height: isMobile ? "300px" : "450px",
-            backgroundColor: "#E0F8F5", // Soft Seafoam
+            backgroundColor: "#F4F7F6", // Soft Seafoam
             borderRadius: "50%",
             zIndex: 0,
             top: "50%",
@@ -109,7 +109,7 @@ export default function Hero() {
             backgroundColor: "#FFFFFF",
             borderRadius: "32px",
             padding: isMobile ? "40px" : "64px",
-            boxShadow: "0 25px 50px -12px rgba(15, 44, 90, 0.15)",
+            boxShadow: "0 25px 50px -12px rgba(15, 44, 90, 0.08)",
             border: "1px solid rgba(229, 231, 235, 0.5)",
             zIndex: 1,
             display: "flex",
@@ -119,17 +119,53 @@ export default function Hero() {
             width: isMobile ? "280px" : "400px",
             height: isMobile ? "280px" : "400px",
           }}>
-            <BrainCircuit size={isMobile ? 140 : 200} color="#0F2C5A" strokeWidth={1.5} />
-            {/* Small decorative accent */}
+            {/* Technical Schematic SVG */}
+            <svg
+              width={isMobile ? "160" : "240"}
+              height={isMobile ? "160" : "240"}
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {/* Thin connecting lines (Faint Slate Teal) */}
+              <g stroke="#2D6A7A" strokeWidth="0.5" strokeOpacity="0.4">
+                <line x1="20" y1="50" x2="50" y2="20" />
+                <line x1="20" y1="50" x2="50" y2="80" />
+                <line x1="50" y1="20" x2="80" y2="50" />
+                <line x1="50" y1="80" x2="80" y2="50" />
+                <line x1="50" y1="20" x2="50" y2="80" />
+                <line x1="20" y1="50" x2="80" y2="50" />
+                <line x1="35" y1="35" x2="65" y2="65" />
+                <line x1="35" y1="65" x2="65" y2="35" />
+              </g>
+
+              {/* Data Nodes (Deep Sapphire) */}
+              <g fill="#0F2C5A">
+                <circle cx="20" cy="50" r="2.5" />
+                <circle cx="50" cy="20" r="3.5" />
+                <circle cx="80" cy="50" r="2.5" />
+                <circle cx="50" cy="80" r="3.5" />
+                <circle cx="50" cy="50" r="4.5" />
+                <circle cx="35" cy="35" r="2" />
+                <circle cx="65" cy="35" r="2" />
+                <circle cx="35" cy="65" r="2" />
+                <circle cx="65" cy="65" r="2" />
+              </g>
+
+              {/* Subtle outer connection ring */}
+              <circle cx="50" cy="50" r="40" stroke="#2D6A7A" strokeWidth="0.25" strokeDasharray="2 2" />
+            </svg>
+
+            {/* Small decorative accent - Matte, no glow */}
             <div style={{
               position: "absolute",
-              top: "-20px",
-              right: "-20px",
-              backgroundColor: "#14E0C8",
-              width: "60px",
-              height: "60px",
-              borderRadius: "50%",
-              boxShadow: "0 8px 16px rgba(20, 224, 200, 0.4)"
+              top: "-15px",
+              right: "-15px",
+              backgroundColor: "#2D6A7A",
+              width: "30px",
+              height: "30px",
+              borderRadius: "4px",
+              boxShadow: "0 4px 12px rgba(15, 44, 90, 0.1)"
             }}></div>
           </div>
         </div>

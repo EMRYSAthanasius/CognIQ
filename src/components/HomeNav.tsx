@@ -86,9 +86,9 @@ export default function HomeNav() {
               transition: "all 0.2s ease"
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = "#14E0C8";
+              e.currentTarget.style.backgroundColor = "#2D6A7A";
               e.currentTarget.style.color = "#FFFFFF";
-              e.currentTarget.style.borderColor = "#14E0C8";
+              e.currentTarget.style.borderColor = "#2D6A7A";
             }}
             onMouseOut={(e) => {
               e.currentTarget.style.backgroundColor = "transparent";
