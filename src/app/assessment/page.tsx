@@ -75,7 +75,7 @@ export default function Home() {
             <div style={{ color: "var(--or)" }}>✓</div> Instant Analytical Reporting
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", background: "var(--cr)", padding: "10px 16px", borderRadius: "100px", border: "1px solid var(--ln)", fontFamily: "-apple-system,sans-serif", fontSize: "13px", fontWeight: "600", color: "var(--tl)" }}>
-            <div style={{ color: "var(--or)" }}>✓</div> Mensa-Standard Matrix Reasoning
+            <div style={{ color: "var(--or)" }}>✓</div> 7 Cognitive Domains Evaluated
           </div>
         </div>
 
@@ -99,28 +99,43 @@ export default function Home() {
 
       <div className="dsec" style={{ background: "#FFFFFF" }}>
         <div className="din">
-          <div className="seye sans" style={{ color: "#14E0C8" }}>Assessment Pillars</div>
+          <div className="seye sans" style={{ color: "#14E0C8" }}>7 Cognitive Domains</div>
           <h2 className="stit" style={{ color: "#0F2C5A" }}>What This Test Measures</h2>
           <div className="dcards-new" style={{ gridTemplateColumns: "repeat(2,1fr)" }}>
             <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
               <div className="dcb" style={{ background: "var(--tl)" }}></div>
-              <div className="dcn" style={{ color: "#0F2C5A" }}>Matrix Reasoning</div>
-              <div className="dcd" style={{ color: "#1F2937" }}>Non-verbal visual patterns that measure your ability to identify rules and abstract relationships.</div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Logical & Abstract</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>Raven-style matrices, series, odd-one-out</div>
             </div>
             <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
-              <div className="dcb" style={{ background: "#2563A8" }}></div>
-              <div className="dcn" style={{ color: "#0F2C5A" }}>Quantitative Logic</div>
-              <div className="dcd" style={{ color: "#1F2937" }}>Numerical sequences and arithmetic reasoning designed to test fluid mathematical intuition.</div>
+              <div className="dcb" style={{ background: "#3B82F6" }}></div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Mathematical</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>Sequences, word problems, arithmetic logic</div>
             </div>
             <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
-              <div className="dcb" style={{ background: "#C47C20" }}></div>
-              <div className="dcn" style={{ color: "#0F2C5A" }}>Verbal Analysis</div>
-              <div className="dcd" style={{ color: "#1F2937" }}>Evaluates your capacity to process complex linguistic relationships and analogies.</div>
+              <div className="dcb" style={{ background: "#F59E0B" }}></div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Problem-Solving</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>LSAT/GMAT constraint & deduction puzzles</div>
             </div>
             <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
-              <div className="dcb" style={{ background: "#7B3FA0" }}></div>
-              <div className="dcn" style={{ color: "#0F2C5A" }}>Spatial Visualization</div>
-              <div className="dcd" style={{ color: "#1F2937" }}>Measures 3D mental rotation and the ability to manipulate objects in a virtual space.</div>
+              <div className="dcb" style={{ background: "#8B5CF6" }}></div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Verbal Reasoning</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>SAT/GRE analogies, synonyms, antonyms</div>
+            </div>
+            <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
+              <div className="dcb" style={{ background: "#22C55E" }}></div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Working Memory</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>Mental manipulation & transformation</div>
+            </div>
+            <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
+              <div className="dcb" style={{ background: "#EF4444" }}></div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Processing Speed</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>Pattern scanning & timed comparisons</div>
+            </div>
+            <div className="dc" style={{ background: "var(--cr)", border: "1px solid var(--cr3)" }}>
+              <div className="dcb" style={{ background: "#6366F1" }}></div>
+              <div className="dcn" style={{ color: "#0F2C5A" }}>Spatial Reasoning</div>
+              <div className="dcd" style={{ color: "#1F2937" }}>Rotation, folding & 3D perspective</div>
             </div>
           </div>
         </div>

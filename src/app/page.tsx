@@ -156,42 +156,58 @@ export default function DetailedHomepage() {
       {/* E. "Assessment Pillars" Section (Realigned to grid) */}
       <section id="methodology" style={{ padding: isMobile ? "80px 24px" : "120px 48px", maxWidth: "1280px", margin: "0 auto", borderBottom: "1px solid #E5E7EB" }}>
         <div style={{ textAlign: "center", marginBottom: "64px", maxWidth: "800px", margin: "0 auto 64px auto" }}>
-          <h2 style={{ fontSize: "14px", color: "#14E0C8", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>Methodological Framework</h2>
-          <h3 style={{ fontSize: isMobile ? "32px" : "40px", color: "#0F2C5A", fontWeight: "800", lineHeight: "1.2" }}>Core Pillars of Cognitive Analysis</h3>
+          <h2 style={{ fontSize: "14px", color: "#14E0C8", textTransform: "uppercase", letterSpacing: "2px", fontWeight: "700", marginBottom: "16px" }}>7 Cognitive Domains</h2>
+          <h3 style={{ fontSize: isMobile ? "32px" : "40px", color: "#0F2C5A", fontWeight: "800", lineHeight: "1.2" }}>What This Test Measures</h3>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "40px" }}>
-          {/* Matrix Reasoning */}
-          <div style={{ padding: "32px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 10px 25px rgba(0,0,0,0.03)" }}>
-            <div style={{ width: "48px", height: "48px", borderRadius: "8px", backgroundColor: "#0F2C5A", color: "#14E0C8", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}>
-              <Fingerprint size={24} />
-            </div>
-            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "16px" }}>Matrix Reasoning</h4>
-            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.7" }}>
-              Our matrix reasoning module isolates and measures abstract, non-verbal logical processing. It relies heavily on pattern induction and deductive reasoning tasks that require the user to identify underlying rules within complex geometric sequences.
-            </p>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+          {/* Logical & Abstract */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#14E0C8", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Logical & Abstract</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Raven-style matrices, series, odd-one-out</p>
           </div>
 
-          {/* Numerical Sequences */}
-          <div style={{ padding: "32px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 10px 25px rgba(0,0,0,0.03)" }}>
-            <div style={{ width: "48px", height: "48px", borderRadius: "8px", backgroundColor: "#0F2C5A", color: "#14E0C8", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}>
-              <Activity size={24} />
-            </div>
-            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "16px" }}>Numerical Sequences</h4>
-            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.7" }}>
-              The numerical logic domain evaluates quantitative pattern matching, arithmetic visualization, and working memory manipulation. Subjects are presented with sequentially progressing numeric matrices that demand rapid generation of mathematical hypotheses.
-            </p>
+          {/* Mathematical */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#3B82F6", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Mathematical</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Sequences, word problems, arithmetic logic</p>
           </div>
 
-          {/* Verbal Analogy */}
-          <div style={{ padding: "32px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 10px 25px rgba(0,0,0,0.03)" }}>
-            <div style={{ width: "48px", height: "48px", borderRadius: "8px", backgroundColor: "#0F2C5A", color: "#14E0C8", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}>
-              <span style={{ fontWeight: "700", fontSize: "18px" }}>Aa</span>
-            </div>
-            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "16px" }}>Verbal Analogy</h4>
-            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.7" }}>
-              Linguistic pattern identification goes beyond simple vocabulary retention. The verbal analysis pillar constructs complex, multi-layered analogies that require the subject to decode abstract relationships between concepts under strict time constraints.
-            </p>
+          {/* Problem-Solving */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#F59E0B", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Problem-Solving</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>LSAT/GMAT constraint & deduction puzzles</p>
+          </div>
+
+          {/* Verbal Reasoning */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#8B5CF6", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Verbal Reasoning</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>SAT/GRE analogies, synonyms, antonyms</p>
+          </div>
+
+          {/* Working Memory */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#22C55E", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Working Memory</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Mental manipulation & transformation</p>
+          </div>
+
+          {/* Processing Speed */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#EF4444", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Processing Speed</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Pattern scanning & timed comparisons</p>
+          </div>
+
+          {/* Spatial Reasoning */}
+          <div style={{ padding: "24px", backgroundColor: "#FFFFFF", borderRadius: "12px", border: "1px solid #E5E7EB", boxShadow: "0 4px 12px rgba(0,0,0,0.02)", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: "24px", right: "24px", height: "3px", backgroundColor: "#6366F1", borderRadius: "0 0 3px 3px" }}></div>
+            <h4 style={{ fontSize: "20px", color: "#0F2C5A", fontWeight: "700", marginBottom: "12px", marginTop: "8px" }}>Spatial Reasoning</h4>
+            <p style={{ fontSize: "15px", color: "#4B5563", lineHeight: "1.6" }}>Rotation, folding & 3D perspective</p>
           </div>
         </div>
       </section>

@@ -15,3 +15,5 @@
  GET /assessment 200 in 323ms (next.js: 156ms, proxy.ts: 103ms, application-code: 64ms)
 ✓ Compiled in 363ms
  GET / 200 in 1781ms (next.js: 820ms, proxy.ts: 482ms, application-code: 479ms)
+ GET / 200 in 2.6s (next.js: 1211ms, proxy.ts: 533ms, application-code: 886ms)
+ GET /assessment 200 in 169ms (next.js: 40ms, proxy.ts: 15ms, application-code: 114ms)
