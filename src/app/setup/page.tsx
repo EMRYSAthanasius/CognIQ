@@ -12,7 +12,8 @@ export default function SetupPage() {
   const [errorMsg, setErrorMsg] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleStart = () => {
+  const handleStart = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     if (!name.trim() || !age.trim() || !edu) {
       setErrorMsg("Please fill in your name, age, and qualifications to continue.");
       return;
@@ -22,6 +23,7 @@ export default function SetupPage() {
     localStorage.setItem("testAge", age.trim());
     localStorage.setItem("testEdu", edu.trim());
 
+    setErrorMsg("");
     router.push("/test");
   };
 
@@ -84,7 +86,7 @@ export default function SetupPage() {
               </select>
             </div>
 
-            <button className="btn bor bfw" style={{ fontSize: "16px", padding: "16px 24px", marginTop: "12px", borderRadius: "8px", fontWeight: "600", boxShadow: "0 4px 12px rgba(20, 224, 200, 0.2)" }} onClick={handleStart}>
+            <button type="button" className="btn bor bfw" style={{ fontSize: "16px", padding: "16px 24px", marginTop: "12px", borderRadius: "8px", fontWeight: "600", boxShadow: "0 4px 12px rgba(20, 224, 200, 0.2)", cursor: "pointer", position: "relative", zIndex: 20 }} onClick={handleStart}>
               Start Assessment &#8594;
             </button>
           </div>

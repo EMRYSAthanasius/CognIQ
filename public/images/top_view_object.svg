@@ -1,0 +1,6 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Isometric view of a block -->
+  <path d="M30 40 L70 20 L110 40 L70 60 Z" fill="#E2E8F0" stroke="#0F2C5A" stroke-width="2"/>
+  <path d="M30 40 L70 60 L70 100 L30 80 Z" fill="#CBD5E1" stroke="#0F2C5A" stroke-width="2"/>
+  <path d="M70 60 L110 40 L110 80 L70 100 Z" fill="#94A3B8" stroke="#0F2C5A" stroke-width="2"/>
+</svg>

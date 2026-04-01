@@ -120,6 +120,28 @@ export default function TestPage() {
           {q.seq && <div className="qform" style={{ fontSize: "clamp(20px, 5vw, 34px)", fontWeight: "bold", color: "var(--or)", marginBottom: "24px", letterSpacing: "-.02em" }}>{q.seq}</div>}
           {q.memseq && <div className="memseq sans" style={{ fontSize: "clamp(18px, 4.5vw, 28px)", fontWeight: "bold", color: "var(--tl)", marginBottom: "20px", letterSpacing: "4px", padding: "20px", background: "var(--tllt)", borderRadius: "12px", border: "1.5px solid var(--tlmd)" }}>{q.memseq}</div>}
 
+          {q.m && (
+            <div className="qmat" style={{ display: "grid", gridTemplateColumns: `repeat(${q.m[0].length}, 1fr)`, gap: "8px", margin: "0 auto 28px", maxWidth: "400px" }}>
+              {q.m.map((row: any[], rIdx: number) => (
+                row.map((cell: any, cIdx: number) => (
+                  <div key={`${rIdx}-${cIdx}`} style={{
+                    background: "#fff", border: "2px solid var(--ln)", borderRadius: "8px", padding: "16px",
+                    display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", fontWeight: "bold", color: "#1F2937",
+                    minHeight: "60px"
+                  }}>
+                    {cell === "?" ? <span style={{ color: "var(--or)" }}>?</span> : cell}
+                  </div>
+                ))
+              ))}
+            </div>
+          )}
+
+          {q.svgKey && (
+            <div style={{ marginBottom: "28px", display: "flex", justifyContent: "center" }}>
+              <img src={`/images/${q.svgKey}.svg`} alt="Question reference" style={{ maxWidth: "100%", maxHeight: "200px" }} />
+            </div>
+          )}
+
           <div className="qinst sans" style={{ fontSize: "clamp(15px, 2.8vw, 19px)", fontWeight: "bold", color: "#1F2937", marginBottom: "28px", lineHeight: "1.6" }}>{q.q}</div>
           <div className="opts" id="opts" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "8px" }}>
             {q.o.map((opt: string, i: number) => (
