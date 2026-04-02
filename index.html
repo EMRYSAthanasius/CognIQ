@@ -783,11 +783,10 @@ function showResults(){
 function doShare(){
   var sc=document.getElementById('rsco').textContent,cl=document.getElementById('rcls').textContent;
   var txt='I scored '+sc+' on the CognIQ assessment!\nClassification: '+cl+'\n\nTake the test: '+window.location.href;
-  try{if(navigator.share)navigator.share({title:'My IQ Score',text:txt});
-  else if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(flashB).catch(function(){lcp(txt);});
-  else lcp(txt);}catch(e){lcp(txt);}
+  try{if(navigator.share)navigator.share({title:'My IQ Score',text:txt}).catch(function(){});
+  else if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(flashB).catch(function(){});
+  }catch(e){}
 }
-function lcp(t){var ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0;top:0;left:0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');flashB();}catch(e){}document.body.removeChild(ta);}
 function flashB(){var b=document.getElementById('rbtn');if(!b)return;var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},2400);}
 </script>
 
