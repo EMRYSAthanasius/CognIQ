@@ -50,3 +50,7 @@
 ✓ Compiled in 25ms
  GET /setup 200 in 858ms (next.js: 387ms, proxy.ts: 153ms, application-code: 319ms)
  GET /test 200 in 111ms (next.js: 47ms, proxy.ts: 19ms, application-code: 45ms)
+  Using external babel configuration from /app/babel.config.json
+○ Compiling middleware ...
+✓ Compiled in 14.8s
+✓ Compiled in 7.4s
