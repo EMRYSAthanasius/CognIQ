@@ -714,6 +714,7 @@ function showResults(){
   }
 
   var grid=document.getElementById('dom-grid');grid.innerHTML='';
+  var dfList=[];
   for(var di=0;di<CATS.length;di++){
     var dcat=CATS[di],dpct=catPcts[dcat],dlb=domLabel(dpct),dcfg=CC[dcat];
     var card=document.createElement('div');card.className='dom-card';
@@ -725,15 +726,16 @@ function showResults(){
       +'<span class="dom-label sans" style="background:'+dlb.c+'">'+dlb.l+'</span>'
       +'<div class="dom-track"><div class="dom-fill" data-w="'+dpct+'" style="background:'+dcfg.bg+'"></div></div>';
     grid.appendChild(card);
+    dfList.push(card.lastElementChild.firstElementChild);
   }
   /* Animate domain bars */
   setTimeout(function(){
-    var df=grid.querySelectorAll('.dom-fill');
-    for(var fi=0;fi<df.length;fi++) df[fi].style.width=df[fi].getAttribute('data-w')+'%';
+    for(var fi=0;fi<dfList.length;fi++) dfList[fi].style.width=dfList[fi].getAttribute('data-w')+'%';
   },350);
 
   /* ── Population comparison ───────────────────── */
   var pop=document.getElementById('pop-rows');pop.innerHTML='';
+  var abList=[], ybList=[];
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
     /* Derive a "you beat X% of test-takers" stat per domain */
@@ -749,12 +751,13 @@ function showResults(){
         +'<div class="pop-you-bar" data-w="'+pyou+'" style="background:'+pcfg.bg+'"></div>'
       +'</div>';
     pop.appendChild(row);
+    var bars = row.lastElementChild;
+    abList.push(bars.firstElementChild);
+    ybList.push(bars.lastElementChild);
   }
   setTimeout(function(){
-    var ab=pop.querySelectorAll('.pop-avg-bar');
-    var yb=pop.querySelectorAll('.pop-you-bar');
-    for(var bi=0;bi<ab.length;bi++) ab[bi].style.width=ab[bi].getAttribute('data-w')+'%';
-    for(var bi2=0;bi2<yb.length;bi2++) yb[bi2].style.width=yb[bi2].getAttribute('data-w')+'%';
+    for(var bi=0;bi<abList.length;bi++) abList[bi].style.width=abList[bi].getAttribute('data-w')+'%';
+    for(var bi2=0;bi2<ybList.length;bi2++) ybList[bi2].style.width=ybList[bi2].getAttribute('data-w')+'%';
   },500);
 
   /* ── IQ ref table ────────────────────────────── */
