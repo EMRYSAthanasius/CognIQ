@@ -714,18 +714,32 @@ function showResults(){
   }
 
   var grid=document.getElementById('dom-grid');grid.innerHTML='';
+  var gridFrag = document.createDocumentFragment();
   for(var di=0;di<CATS.length;di++){
     var dcat=CATS[di],dpct=catPcts[dcat],dlb=domLabel(dpct),dcfg=CC[dcat];
     var card=document.createElement('div');card.className='dom-card';
-    card.innerHTML=
-      '<div class="dom-card-top">'
-        +'<div class="dom-card-name sans"><span class="pdot" style="background:'+dcfg.bg+'"></span>'+dcfg.full+'</div>'
-        +'<div class="dom-card-pct" style="color:'+dcfg.bg+'">'+dpct+'%</div>'
-      +'</div>'
-      +'<span class="dom-label sans" style="background:'+dlb.c+'">'+dlb.l+'</span>'
-      +'<div class="dom-track"><div class="dom-fill" data-w="'+dpct+'" style="background:'+dcfg.bg+'"></div></div>';
-    grid.appendChild(card);
+
+    var top=document.createElement('div');top.className='dom-card-top';
+    var name=document.createElement('div');name.className='dom-card-name sans';
+    var dot=document.createElement('span');dot.className='pdot';dot.style.background=dcfg.bg;
+    name.appendChild(dot);
+    name.appendChild(document.createTextNode(dcfg.full));
+    var pct=document.createElement('div');pct.className='dom-card-pct';pct.style.color=dcfg.bg;pct.textContent=dpct+'%';
+    top.appendChild(name);
+    top.appendChild(pct);
+    card.appendChild(top);
+
+    var label=document.createElement('span');label.className='dom-label sans';label.style.background=dlb.c;label.textContent=dlb.l;
+    card.appendChild(label);
+
+    var track=document.createElement('div');track.className='dom-track';
+    var fill=document.createElement('div');fill.className='dom-fill';fill.setAttribute('data-w', dpct);fill.style.background=dcfg.bg;
+    track.appendChild(fill);
+    card.appendChild(track);
+
+    gridFrag.appendChild(card);
   }
+  grid.appendChild(gridFrag);
   /* Animate domain bars */
   setTimeout(function(){
     var df=grid.querySelectorAll('.dom-fill');
@@ -734,22 +748,34 @@ function showResults(){
 
   /* ── Population comparison ───────────────────── */
   var pop=document.getElementById('pop-rows');pop.innerHTML='';
+  var popFrag = document.createDocumentFragment();
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
     /* Derive a "you beat X% of test-takers" stat per domain */
     var beat=Math.min(99,Math.max(1,Math.round(50+(pyou-pavg)*0.7)));
     var row=document.createElement('div');row.className='pop-row';
-    row.innerHTML=
-      '<div class="pop-head">'
-        +'<div class="pop-name sans"><span class="pdot" style="background:'+pcfg.bg+'"></span>'+pcfg.full+'</div>'
-        +'<div class="pop-you sans" style="color:'+pcfg.bg+'">You: '+pyou+'%  &nbsp;&bull;&nbsp;  Beat '+beat+'% of test-takers</div>'
-      +'</div>'
-      +'<div class="pop-bars">'
-        +'<div class="pop-avg-bar" data-w="'+pavg+'"></div>'
-        +'<div class="pop-you-bar" data-w="'+pyou+'" style="background:'+pcfg.bg+'"></div>'
-      +'</div>';
-    pop.appendChild(row);
+
+    var head=document.createElement('div');head.className='pop-head';
+    var pname=document.createElement('div');pname.className='pop-name sans';
+    var pdot=document.createElement('span');pdot.className='pdot';pdot.style.background=pcfg.bg;
+    pname.appendChild(pdot);
+    pname.appendChild(document.createTextNode(pcfg.full));
+    var pyou_div=document.createElement('div');pyou_div.className='pop-you sans';pyou_div.style.color=pcfg.bg;
+    pyou_div.innerHTML='You: '+pyou+'%  &nbsp;&bull;&nbsp;  Beat '+beat+'% of test-takers'; // using innerHTML specifically for &nbsp; and &bull;
+    head.appendChild(pname);
+    head.appendChild(pyou_div);
+    row.appendChild(head);
+
+    var bars=document.createElement('div');bars.className='pop-bars';
+    var avg_bar=document.createElement('div');avg_bar.className='pop-avg-bar';avg_bar.setAttribute('data-w', pavg);
+    var you_bar=document.createElement('div');you_bar.className='pop-you-bar';you_bar.setAttribute('data-w', pyou);you_bar.style.background=pcfg.bg;
+    bars.appendChild(avg_bar);
+    bars.appendChild(you_bar);
+    row.appendChild(bars);
+
+    popFrag.appendChild(row);
   }
+  pop.appendChild(popFrag);
   setTimeout(function(){
     var ab=pop.querySelectorAll('.pop-avg-bar');
     var yb=pop.querySelectorAll('.pop-you-bar');
@@ -769,12 +795,22 @@ function showResults(){
     {r:"Below 70",l:"Below Average",p:"<2.0%",lo:0,hi:69}
   ];
   var tbl=document.getElementById('rref');tbl.innerHTML='';
+  var tblFrag = document.createDocumentFragment();
   for(var ri=0;ri<REFS.length;ri++){
     var rv=REFS[ri],act=(iq>=rv.lo&&iq<=rv.hi);
     var tr2=document.createElement('tr');if(act)tr2.className='hl';
-    tr2.innerHTML='<td>'+rv.r+'</td><td>'+rv.l+'</td><td>'+rv.p+'</td>';
-    tbl.appendChild(tr2);
+
+    var td1=document.createElement('td');td1.textContent=rv.r;
+    var td2=document.createElement('td');td2.textContent=rv.l;
+    var td3=document.createElement('td');td3.textContent=rv.p;
+
+    tr2.appendChild(td1);
+    tr2.appendChild(td2);
+    tr2.appendChild(td3);
+
+    tblFrag.appendChild(tr2);
   }
+  tbl.appendChild(tblFrag);
 }
 
 /* ════════════════════════════════════════
