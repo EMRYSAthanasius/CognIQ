@@ -573,6 +573,19 @@ function renderQ(){
   tmr.className='qtmr'+(q.fast?' fast':'');
 
   /* Build HTML */
+  var h=generateQuestionHTML(q);
+
+  document.getElementById('qcw').innerHTML=h;
+  var nb=document.getElementById('bnext');
+  nb.classList.remove('vis');
+  nb.innerHTML=(S.idx>=S.qs.length-1)?'View Results &#8594;':'Next &#8594;';
+  startTimer(q.fast?20:60);
+}
+
+/* ════════════════════════════════════════
+   GENERATE HTML
+════════════════════════════════════════ */
+function generateQuestionHTML(q){
   var h='';
   if(q.fast) h+='<div class="spdbadge"><span class="sans">&#9889; Speed Round &mdash; 20 Seconds</span></div>';
   if(q.memseq) h+='<div class="memseq sans">'+q.memseq+'</div>';
@@ -594,12 +607,7 @@ function renderQ(){
   h+='<div class="opts" id="opts">';
   for(var i=0;i<q.o.length;i++) h+='<button class="opt sans" onclick="pick('+i+')">'+q.o[i]+'</button>';
   h+='</div>';
-
-  document.getElementById('qcw').innerHTML=h;
-  var nb=document.getElementById('bnext');
-  nb.classList.remove('vis');
-  nb.innerHTML=(S.idx>=S.qs.length-1)?'View Results &#8594;':'Next &#8594;';
-  startTimer(q.fast?20:60);
+  return h;
 }
 
 /* ════════════════════════════════════════
