@@ -109,6 +109,115 @@ describe('CognIQ Application', () => {
     });
   });
 
+  describe('showResults Integration', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+      // Setup mock state
+      window.S = {
+        name: 'John Doe',
+        age: 30,
+        qs: [],
+        idx: 60,
+        answers: [
+          { c: 'LA', p: 1, ok: true, t: 15, pts: 1, max: 1 },
+          { c: 'LA', p: 2, ok: false, t: 25, pts: 0, max: 2 },
+          { c: 'MA', p: 3, ok: true, t: 40, pts: 3, max: 3 },
+          { c: 'PS', p: 1, ok: true, t: 20, pts: 1, max: 1 },
+          { c: 'VR', p: 2, ok: true, t: 30, pts: 2, max: 2 },
+          { c: 'WM', p: 3, ok: false, t: 50, pts: 0, max: 3 },
+          { c: 'SP', p: 1, ok: true, t: 10, pts: 1, max: 1 },
+          { c: 'SR', p: 2, ok: true, t: 35, pts: 2, max: 2 }
+        ],
+        chosen: null,
+        tid: null,
+        elapsed: 0
+      };
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('should navigate to the results screen and display correct header', () => {
+      window.showResults();
+      expect(document.getElementById('s-results').classList.contains('on')).toBe(true);
+      expect(document.getElementById('rlb').textContent).toBe("John Doe's IQ Result");
+    });
+
+    it('should calculate and render the correct IQ, class, and percentile', () => {
+      window.showResults();
+
+      // Advance timers to complete number animation
+      jest.runAllTimers();
+
+      // Given the answers: raw pts = 1+0+3+1+2+0+1+2 = 10. max = 1+2+3+1+2+3+1+2 = 15. ratio = 10/15 = 0.666
+      // Age 30: adj = 0
+      // ap = 0.666
+      // IQ = 100 + 15 * (ln(0.666 / 0.333) / 1.05) ~ 110
+      const expectedIQ = window.calcIQ(10, 15, 30);
+
+      expect(document.getElementById('rsco').textContent).toBe(expectedIQ.toString());
+      expect(document.getElementById('rcls').textContent).toBe(window.clsIQ(expectedIQ));
+
+      const p = window.pct(expectedIQ);
+      expect(document.getElementById('rpct').textContent).toContain(`Top ${100-p}%`);
+      expect(document.getElementById('rpct').textContent).toContain(`${p}th percentile`);
+    });
+
+    it('should render domain percentage cards correctly', () => {
+      window.showResults();
+
+      const grid = document.getElementById('dom-grid');
+      const cards = grid.querySelectorAll('.dom-card');
+
+      // 7 domains should be rendered
+      expect(cards.length).toBe(7);
+
+      // LA: 1/3 = 33%
+      // MA: 3/3 = 100%
+      // PS: 1/1 = 100%
+      // VR: 2/2 = 100%
+      // WM: 0/3 = 0%
+      // SP: 1/1 = 100%
+      // SR: 2/2 = 100%
+
+      // We can check if at least one card has 33% and one has 100%
+      const html = grid.innerHTML;
+      expect(html).toContain('33%');
+      expect(html).toContain('100%');
+      expect(html).toContain('0%');
+    });
+
+    it('should render population comparison rows', () => {
+      window.showResults();
+
+      const popRows = document.getElementById('pop-rows');
+      const rows = popRows.querySelectorAll('.pop-row');
+
+      // 7 domain comparison rows
+      expect(rows.length).toBe(7);
+
+      // Test animation classes/styles are applied after timeout
+      jest.runAllTimers();
+
+      const youBars = popRows.querySelectorAll('.pop-you-bar');
+      // Should have data-w attribute translated to width style
+      expect(youBars[0].style.width).toMatch(/%/);
+    });
+
+    it('should highlight the correct row in the IQ classification scale', () => {
+      window.showResults();
+      const expectedIQ = window.calcIQ(10, 15, 30); // ~110 (High Average)
+
+      const table = document.getElementById('rref');
+      const highlightedRow = table.querySelector('tr.hl');
+
+      expect(highlightedRow).not.toBeNull();
+      // For ~110, it should be High Average (110-119)
+      expect(highlightedRow.innerHTML).toContain('High Average');
+    });
+  });
+
   describe('doSetup Validation', () => {
 
     it('should reject invalid age under 10', () => {
