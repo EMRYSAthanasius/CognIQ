@@ -537,8 +537,8 @@ function gS(id){
   window.scrollTo(0,0);
   _gS_cache.pw.style.display=(id==='s-test')?'block':'none';
   var hr=_gS_cache.hr;
-  if(id==='s-results') hr.innerHTML='Assessment Complete';
-  else if(id!=='s-test') hr.innerHTML='';
+  if(id==='s-results') hr.textContent='Assessment Complete';
+  else if(id!=='s-test') hr.textContent='';
 }
 
 /* ════════════════════════════════════════
@@ -563,8 +563,19 @@ function renderQ(){
   S.chosen=null;S.elapsed=0;
 
   /* Header */
-  document.getElementById('hdr-r').innerHTML=
-    '<span class="dpill sans" style="background:'+DCOLOR[q.p]+'">'+DLABEL[q.p]+'</span>&nbsp;<strong>'+(S.idx+1)+'</strong> / '+S.qs.length;
+  var hdr=document.getElementById('hdr-r');
+  hdr.textContent='';
+  var pSpan=document.createElement('span');
+  pSpan.className='dpill sans';
+  pSpan.style.background=DCOLOR[q.p];
+  pSpan.textContent=DLABEL[q.p];
+  hdr.appendChild(pSpan);
+  hdr.appendChild(document.createTextNode('\u00A0'));
+  var st=document.createElement('strong');
+  st.textContent=(S.idx+1);
+  hdr.appendChild(st);
+  hdr.appendChild(document.createTextNode(' / '+S.qs.length));
+
   document.getElementById('pb').style.width=((S.idx/S.qs.length)*100)+'%';
   document.getElementById('qtag').textContent=cfg.full;
   document.getElementById('qtag').style.background=cfg.bg;
@@ -572,33 +583,65 @@ function renderQ(){
   var tmr=document.getElementById('qtmr');
   tmr.className='qtmr'+(q.fast?' fast':'');
 
-  /* Build HTML */
-  var h='';
-  if(q.fast) h+='<div class="spdbadge"><span class="sans">&#9889; Speed Round &mdash; 20 Seconds</span></div>';
-  if(q.memseq) h+='<div class="memseq sans">'+q.memseq+'</div>';
-  if(q.svgKey && SVGS[q.svgKey]) h+='<div class="svgq">'+SVGS[q.svgKey]()+'</div>';
+  /* Build HTML programmatically to prevent XSS */
+  var df=document.createDocumentFragment();
+
+  if(q.fast){
+    var sb=document.createElement('div');sb.className='spdbadge';
+    var ss=document.createElement('span');ss.className='sans';ss.textContent='\u26A1 Speed Round \u2014 20 Seconds';
+    sb.appendChild(ss);df.appendChild(sb);
+  }
+  if(q.memseq){
+    var ms=document.createElement('div');ms.className='memseq sans';ms.textContent=q.memseq;
+    df.appendChild(ms);
+  }
+  if(q.svgKey && SVGS[q.svgKey]){
+    var sq=document.createElement('div');sq.className='svgq';
+    sq.innerHTML=SVGS[q.svgKey](); /* Trusted static SVGs */
+    df.appendChild(sq);
+  }
   if(q.m){
-    h+='<div class="mtxw"><table class="mtx">';
+    var mw=document.createElement('div');mw.className='mtxw';
+    var mt=document.createElement('table');mt.className='mtx';
     for(var r=0;r<q.m.length;r++){
-      h+='<tr>';
+      var tr=document.createElement('tr');
       for(var c2=0;c2<q.m[r].length;c2++){
         var v=q.m[r][c2];
-        h+=(v==='?')?'<td class="uk">?</td>':'<td>'+v+'</td>';
+        var td=document.createElement('td');
+        if(v==='?'){td.className='uk';td.textContent='?';}
+        else td.textContent=v;
+        tr.appendChild(td);
       }
-      h+='</tr>';
+      mt.appendChild(tr);
     }
-    h+='</table></div>';
+    mw.appendChild(mt);df.appendChild(mw);
   }
-  if(q.seq) h+='<div class="qform">'+q.seq+'</div>';
-  h+='<div class="qinst sans">'+q.q+'</div>';
-  h+='<div class="opts" id="opts">';
-  for(var i=0;i<q.o.length;i++) h+='<button class="opt sans" onclick="pick('+i+')">'+q.o[i]+'</button>';
-  h+='</div>';
+  if(q.seq){
+    var qs=document.createElement('div');qs.className='qform';qs.textContent=q.seq;
+    df.appendChild(qs);
+  }
+  var qi=document.createElement('div');qi.className='qinst sans';qi.textContent=q.q;
+  df.appendChild(qi);
 
-  document.getElementById('qcw').innerHTML=h;
+  var opts=document.createElement('div');opts.className='opts';opts.id='opts';
+  for(var i=0;i<q.o.length;i++){
+    var btn=document.createElement('button');btn.className='opt sans';
+    btn.textContent=q.o[i];
+    /* Using closure for onclick to ensure correct index */
+    (function(idx){
+      btn.onclick=function(){pick(idx);};
+    })(i);
+    opts.appendChild(btn);
+  }
+  df.appendChild(opts);
+
+  var qcw=document.getElementById('qcw');
+  qcw.textContent='';
+  qcw.appendChild(df);
+
   var nb=document.getElementById('bnext');
   nb.classList.remove('vis');
-  nb.innerHTML=(S.idx>=S.qs.length-1)?'View Results &#8594;':'Next &#8594;';
+  nb.textContent=(S.idx>=S.qs.length-1)?'View Results \u2192':'Next \u2192';
   startTimer(q.fast?20:60);
 }
 
@@ -713,17 +756,35 @@ function showResults(){
     return{l:"Weak",c:"#B83232"};
   }
 
-  var grid=document.getElementById('dom-grid');grid.innerHTML='';
+  var grid=document.getElementById('dom-grid');grid.textContent='';
   for(var di=0;di<CATS.length;di++){
     var dcat=CATS[di],dpct=catPcts[dcat],dlb=domLabel(dpct),dcfg=CC[dcat];
     var card=document.createElement('div');card.className='dom-card';
-    card.innerHTML=
-      '<div class="dom-card-top">'
-        +'<div class="dom-card-name sans"><span class="pdot" style="background:'+dcfg.bg+'"></span>'+dcfg.full+'</div>'
-        +'<div class="dom-card-pct" style="color:'+dcfg.bg+'">'+dpct+'%</div>'
-      +'</div>'
-      +'<span class="dom-label sans" style="background:'+dlb.c+'">'+dlb.l+'</span>'
-      +'<div class="dom-track"><div class="dom-fill" data-w="'+dpct+'" style="background:'+dcfg.bg+'"></div></div>';
+
+    var dctop=document.createElement('div');dctop.className='dom-card-top';
+
+    var dcnm=document.createElement('div');dcnm.className='dom-card-name sans';
+    var pd=document.createElement('span');pd.className='pdot';pd.style.background=dcfg.bg;
+    dcnm.appendChild(pd);
+    dcnm.appendChild(document.createTextNode(dcfg.full));
+    dctop.appendChild(dcnm);
+
+    var dcp=document.createElement('div');dcp.className='dom-card-pct';dcp.style.color=dcfg.bg;
+    dcp.textContent=dpct+'%';
+    dctop.appendChild(dcp);
+    card.appendChild(dctop);
+
+    var dl=document.createElement('span');dl.className='dom-label sans';dl.style.background=dlb.c;
+    dl.textContent=dlb.l;
+    card.appendChild(dl);
+
+    var dt=document.createElement('div');dt.className='dom-track';
+    var df=document.createElement('div');df.className='dom-fill';
+    df.setAttribute('data-w', dpct);
+    df.style.background=dcfg.bg;
+    dt.appendChild(df);
+    card.appendChild(dt);
+
     grid.appendChild(card);
   }
   /* Animate domain bars */
@@ -733,21 +794,33 @@ function showResults(){
   },350);
 
   /* ── Population comparison ───────────────────── */
-  var pop=document.getElementById('pop-rows');pop.innerHTML='';
+  var pop=document.getElementById('pop-rows');pop.textContent='';
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
     /* Derive a "you beat X% of test-takers" stat per domain */
     var beat=Math.min(99,Math.max(1,Math.round(50+(pyou-pavg)*0.7)));
     var row=document.createElement('div');row.className='pop-row';
-    row.innerHTML=
-      '<div class="pop-head">'
-        +'<div class="pop-name sans"><span class="pdot" style="background:'+pcfg.bg+'"></span>'+pcfg.full+'</div>'
-        +'<div class="pop-you sans" style="color:'+pcfg.bg+'">You: '+pyou+'%  &nbsp;&bull;&nbsp;  Beat '+beat+'% of test-takers</div>'
-      +'</div>'
-      +'<div class="pop-bars">'
-        +'<div class="pop-avg-bar" data-w="'+pavg+'"></div>'
-        +'<div class="pop-you-bar" data-w="'+pyou+'" style="background:'+pcfg.bg+'"></div>'
-      +'</div>';
+
+    var ph=document.createElement('div');ph.className='pop-head';
+
+    var pnm=document.createElement('div');pnm.className='pop-name sans';
+    var ppdot=document.createElement('span');ppdot.className='pdot';ppdot.style.background=pcfg.bg;
+    pnm.appendChild(ppdot);
+    pnm.appendChild(document.createTextNode(pcfg.full));
+    ph.appendChild(pnm);
+
+    var py=document.createElement('div');py.className='pop-you sans';py.style.color=pcfg.bg;
+    py.textContent='You: '+pyou+'%  \u00A0\u2022\u00A0  Beat '+beat+'% of test-takers';
+    ph.appendChild(py);
+    row.appendChild(ph);
+
+    var pbs=document.createElement('div');pbs.className='pop-bars';
+    var pab=document.createElement('div');pab.className='pop-avg-bar';pab.setAttribute('data-w', pavg);
+    var pyb=document.createElement('div');pyb.className='pop-you-bar';pyb.setAttribute('data-w', pyou);pyb.style.background=pcfg.bg;
+    pbs.appendChild(pab);
+    pbs.appendChild(pyb);
+    row.appendChild(pbs);
+
     pop.appendChild(row);
   }
   setTimeout(function(){
@@ -768,11 +841,19 @@ function showResults(){
     {r:"70-79",l:"Borderline",p:"6.7%",lo:70,hi:79},
     {r:"Below 70",l:"Below Average",p:"<2.0%",lo:0,hi:69}
   ];
-  var tbl=document.getElementById('rref');tbl.innerHTML='';
+  var tbl=document.getElementById('rref');tbl.textContent='';
   for(var ri=0;ri<REFS.length;ri++){
     var rv=REFS[ri],act=(iq>=rv.lo&&iq<=rv.hi);
     var tr2=document.createElement('tr');if(act)tr2.className='hl';
-    tr2.innerHTML='<td>'+rv.r+'</td><td>'+rv.l+'</td><td>'+rv.p+'</td>';
+
+    var td1=document.createElement('td');td1.textContent=rv.r;
+    var td2=document.createElement('td');td2.textContent=rv.l;
+    var td3=document.createElement('td');td3.textContent=rv.p;
+
+    tr2.appendChild(td1);
+    tr2.appendChild(td2);
+    tr2.appendChild(td3);
+
     tbl.appendChild(tr2);
   }
 }
