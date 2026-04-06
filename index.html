@@ -768,13 +768,13 @@ function showResults(){
     {r:"70-79",l:"Borderline",p:"6.7%",lo:70,hi:79},
     {r:"Below 70",l:"Below Average",p:"<2.0%",lo:0,hi:69}
   ];
-  var tbl=document.getElementById('rref');tbl.innerHTML='';
+  var tbl=document.getElementById('rref');
+  var h='';
   for(var ri=0;ri<REFS.length;ri++){
     var rv=REFS[ri],act=(iq>=rv.lo&&iq<=rv.hi);
-    var tr2=document.createElement('tr');if(act)tr2.className='hl';
-    tr2.innerHTML='<td>'+rv.r+'</td><td>'+rv.l+'</td><td>'+rv.p+'</td>';
-    tbl.appendChild(tr2);
+    h+='<tr'+(act?' class="hl"':'')+'><td>'+rv.r+'</td><td>'+rv.l+'</td><td>'+rv.p+'</td></tr>';
   }
+  tbl.innerHTML=h;
 }
 
 /* ════════════════════════════════════════
