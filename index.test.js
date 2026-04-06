@@ -109,6 +109,44 @@ describe('CognIQ Application', () => {
     });
   });
 
+  describe('advQ Progression', () => {
+    beforeEach(() => {
+      window.S.qs = [
+        { c: 'LA', p: 1, q: 'Q1', o: ['A', 'B'], a: 0 },
+        { c: 'LA', p: 1, q: 'Q2', o: ['C', 'D'], a: 1 }
+      ];
+      window.S.idx = 0;
+      window.S.tid = 12345; // mock timer id
+
+      window.renderQ = jest.fn();
+      window.showResults = jest.fn();
+      jest.spyOn(window, 'clearInterval');
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('should clear interval, increment idx and call renderQ if not at end', () => {
+      window.advQ();
+
+      expect(window.clearInterval).toHaveBeenCalledWith(12345);
+      expect(window.S.idx).toBe(1);
+      expect(window.renderQ).toHaveBeenCalled();
+      expect(window.showResults).not.toHaveBeenCalled();
+    });
+
+    it('should clear interval, increment idx and call showResults if at end', () => {
+      window.S.idx = 1; // currently at the last question
+      window.advQ();
+
+      expect(window.clearInterval).toHaveBeenCalledWith(12345);
+      expect(window.S.idx).toBe(2);
+      expect(window.showResults).toHaveBeenCalled();
+      expect(window.renderQ).not.toHaveBeenCalled();
+    });
+  });
+
   describe('doSetup Validation', () => {
 
     it('should reject invalid age under 10', () => {
