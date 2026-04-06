@@ -734,6 +734,8 @@ function showResults(){
 
   /* ── Population comparison ───────────────────── */
   var pop=document.getElementById('pop-rows');pop.innerHTML='';
+  var ab=[];
+  var yb=[];
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
     /* Derive a "you beat X% of test-takers" stat per domain */
@@ -749,10 +751,11 @@ function showResults(){
         +'<div class="pop-you-bar" data-w="'+pyou+'" style="background:'+pcfg.bg+'"></div>'
       +'</div>';
     pop.appendChild(row);
+    var bars=row.lastElementChild;
+    ab.push(bars.firstElementChild);
+    yb.push(bars.lastElementChild);
   }
   setTimeout(function(){
-    var ab=pop.querySelectorAll('.pop-avg-bar');
-    var yb=pop.querySelectorAll('.pop-you-bar');
     for(var bi=0;bi<ab.length;bi++) ab[bi].style.width=ab[bi].getAttribute('data-w')+'%';
     for(var bi2=0;bi2<yb.length;bi2++) yb[bi2].style.width=yb[bi2].getAttribute('data-w')+'%';
   },500);
