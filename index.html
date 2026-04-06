@@ -683,7 +683,15 @@ function showResults(){
 
   document.getElementById('rlb').textContent=S.name!=='You'?S.name+"'s IQ Result":"Your IQ Result";
   var cur=60,el=document.getElementById('rsco');
-  var ck=setInterval(function(){cur+=Math.max(1,Math.ceil((iq-cur)/5));if(cur>=iq){cur=iq;clearInterval(ck);}el.textContent=cur;},28);
+  var st;
+  function anim(ts) {
+    if (!st) st = ts;
+    cur += Math.max(1, Math.ceil((iq - cur) / 5));
+    if (cur >= iq) { cur = iq; el.textContent = cur; return; }
+    el.textContent = cur;
+    requestAnimationFrame(anim);
+  }
+  requestAnimationFrame(anim);
   document.getElementById('rcls').textContent=cl;
   document.getElementById('rpct').textContent='Top '+(100-p)+'% of the population  \u2022  '+p+'th percentile';
   setTimeout(function(){document.getElementById('gpin').style.left=Math.max(2,Math.min(98,((iq-60)/(162-60))*100))+'%';},280);
