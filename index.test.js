@@ -109,6 +109,60 @@ describe('CognIQ Application', () => {
     });
   });
 
+  describe('renderQ Validation', () => {
+    it('should correctly render a standard question', () => {
+      // Mock global S state
+      window.S.idx = 0;
+      window.S.qs = [{
+        c: "LA",
+        p: 1,
+        q: "Test Question",
+        o: ["Option 1", "Option 2"],
+        a: 0
+      }];
+      window.S.qs.length = 1;
+
+      // Ensure some parent mock layout is present (JSDOM handles the index.html we loaded)
+      window.renderQ();
+
+      // Check header info
+      expect(document.getElementById('hdr-r').innerHTML).toContain('1</strong> / 1');
+      expect(document.getElementById('qpt').textContent).toBe('Question 1 of 1');
+
+      // Check question rendering
+      const qcwHtml = document.getElementById('qcw').innerHTML;
+      expect(qcwHtml).toContain('Test Question');
+      expect(qcwHtml).toContain('Option 1');
+      expect(qcwHtml).toContain('Option 2');
+
+      // Check next button state
+      const nextBtn = document.getElementById('bnext');
+      expect(nextBtn.classList.contains('vis')).toBe(false);
+    });
+
+    it('should correctly render a speed question with speed badge', () => {
+      window.S.idx = 0;
+      window.S.qs = [{
+        c: "SP",
+        p: 2,
+        fast: true,
+        q: "Speed Test Question",
+        o: ["A", "B", "C"],
+        a: 1
+      }];
+
+      window.renderQ();
+
+      // Ensure fast class is added to timer
+      expect(document.getElementById('qtmr').className).toContain('fast');
+
+      // Ensure speed badge is rendered
+      const qcwHtml = document.getElementById('qcw').innerHTML;
+      expect(qcwHtml).toContain('Speed Round');
+      expect(qcwHtml).toContain('Speed Test Question');
+    });
+  });
+
   describe('doSetup Validation', () => {
 
     it('should reject invalid age under 10', () => {
