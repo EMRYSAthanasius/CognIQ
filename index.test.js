@@ -22,8 +22,8 @@ describe('CognIQ Application', () => {
 
   afterEach(() => {
     // Clean up timers or intervals the app might start
-    if (window.S && window.S.tid) {
-      clearInterval(window.S.tid);
+    if (window.AppState && window.AppState.get('tid')) {
+      clearInterval(window.AppState.get('tid'));
     }
     jest.clearAllTimers();
     // Clear DOM state
@@ -147,12 +147,12 @@ describe('CognIQ Application', () => {
 
       window.doSetup();
 
-      expect(window.S.name).toBe('TestUser');
-      expect(window.S.age).toBe(25);
-      expect(window.S.qs.length).toBeGreaterThan(0);
-      expect(window.S.idx).toBe(0);
-      expect(window.S.answers).toEqual([]);
-      expect(window.S.chosen).toBeNull();
+      expect(window.AppState.get('name')).toBe('TestUser');
+      expect(window.AppState.get('age')).toBe(25);
+      expect(window.AppState.get('qs').length).toBeGreaterThan(0);
+      expect(window.AppState.get('idx')).toBe(0);
+      expect(window.AppState.get('answers')).toEqual([]);
+      expect(window.AppState.get('chosen')).toBeNull();
 
       // It should call gS('s-test') and renderQ()
       expect(document.getElementById('s-test').classList.contains('on')).toBe(true);
