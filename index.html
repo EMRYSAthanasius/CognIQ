@@ -573,29 +573,79 @@ function renderQ(){
   tmr.className='qtmr'+(q.fast?' fast':'');
 
   /* Build HTML */
-  var h='';
-  if(q.fast) h+='<div class="spdbadge"><span class="sans">&#9889; Speed Round &mdash; 20 Seconds</span></div>';
-  if(q.memseq) h+='<div class="memseq sans">'+q.memseq+'</div>';
-  if(q.svgKey && SVGS[q.svgKey]) h+='<div class="svgq">'+SVGS[q.svgKey]()+'</div>';
-  if(q.m){
-    h+='<div class="mtxw"><table class="mtx">';
-    for(var r=0;r<q.m.length;r++){
-      h+='<tr>';
-      for(var c2=0;c2<q.m[r].length;c2++){
-        var v=q.m[r][c2];
-        h+=(v==='?')?'<td class="uk">?</td>':'<td>'+v+'</td>';
-      }
-      h+='</tr>';
-    }
-    h+='</table></div>';
-  }
-  if(q.seq) h+='<div class="qform">'+q.seq+'</div>';
-  h+='<div class="qinst sans">'+q.q+'</div>';
-  h+='<div class="opts" id="opts">';
-  for(var i=0;i<q.o.length;i++) h+='<button class="opt sans" onclick="pick('+i+')">'+q.o[i]+'</button>';
-  h+='</div>';
+  var frag = document.createDocumentFragment();
 
-  document.getElementById('qcw').innerHTML=h;
+  if(q.fast) {
+    var spd = document.createElement('div');
+    spd.className = 'spdbadge';
+    var spn = document.createElement('span');
+    spn.className = 'sans';
+    spn.innerHTML = '&#9889; Speed Round &mdash; 20 Seconds';
+    spd.appendChild(spn);
+    frag.appendChild(spd);
+  }
+
+  if(q.memseq) {
+    var mem = document.createElement('div');
+    mem.className = 'memseq sans';
+    mem.textContent = q.memseq;
+    frag.appendChild(mem);
+  }
+
+  if(q.svgKey && SVGS[q.svgKey]) {
+    var svgq = document.createElement('div');
+    svgq.className = 'svgq';
+    svgq.innerHTML = SVGS[q.svgKey]();
+    frag.appendChild(svgq);
+  }
+
+  if(q.m) {
+    var mtxw = document.createElement('div');
+    mtxw.className = 'mtxw';
+    var tbl = document.createElement('table');
+    tbl.className = 'mtx';
+    for(var r=0; r<q.m.length; r++) {
+      var tr = document.createElement('tr');
+      for(var c2=0; c2<q.m[r].length; c2++) {
+        var v = q.m[r][c2];
+        var td = document.createElement('td');
+        if (v === '?') td.className = 'uk';
+        td.textContent = v;
+        tr.appendChild(td);
+      }
+      tbl.appendChild(tr);
+    }
+    mtxw.appendChild(tbl);
+    frag.appendChild(mtxw);
+  }
+
+  if(q.seq) {
+    var qform = document.createElement('div');
+    qform.className = 'qform';
+    qform.textContent = q.seq;
+    frag.appendChild(qform);
+  }
+
+  var qinst = document.createElement('div');
+  qinst.className = 'qinst sans';
+  qinst.textContent = q.q;
+  frag.appendChild(qinst);
+
+  var opts = document.createElement('div');
+  opts.className = 'opts';
+  opts.id = 'opts';
+  for(var i=0; i<q.o.length; i++) {
+    var btn = document.createElement('button');
+    btn.className = 'opt sans';
+    btn.setAttribute('onclick', 'pick(' + i + ')');
+    btn.textContent = q.o[i];
+    opts.appendChild(btn);
+  }
+  frag.appendChild(opts);
+
+  var qcw = document.getElementById('qcw');
+  qcw.innerHTML = '';
+  qcw.appendChild(frag);
   var nb=document.getElementById('bnext');
   nb.classList.remove('vis');
   nb.innerHTML=(S.idx>=S.qs.length-1)?'View Results &#8594;':'Next &#8594;';
