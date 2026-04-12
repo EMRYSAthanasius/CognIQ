@@ -714,45 +714,62 @@ function showResults(){
   }
 
   var grid=document.getElementById('dom-grid');grid.innerHTML='';
+  var gridFrag=document.createDocumentFragment();
+  var dfElements=[];
   for(var di=0;di<CATS.length;di++){
     var dcat=CATS[di],dpct=catPcts[dcat],dlb=domLabel(dpct),dcfg=CC[dcat];
     var card=document.createElement('div');card.className='dom-card';
-    card.innerHTML=
-      '<div class="dom-card-top">'
-        +'<div class="dom-card-name sans"><span class="pdot" style="background:'+dcfg.bg+'"></span>'+dcfg.full+'</div>'
-        +'<div class="dom-card-pct" style="color:'+dcfg.bg+'">'+dpct+'%</div>'
-      +'</div>'
-      +'<span class="dom-label sans" style="background:'+dlb.c+'">'+dlb.l+'</span>'
-      +'<div class="dom-track"><div class="dom-fill" data-w="'+dpct+'" style="background:'+dcfg.bg+'"></div></div>';
-    grid.appendChild(card);
+    var top=document.createElement('div');top.className='dom-card-top';
+    var cname=document.createElement('div');cname.className='dom-card-name sans';
+    var pdot=document.createElement('span');pdot.className='pdot';pdot.style.background=dcfg.bg;
+    cname.appendChild(pdot);cname.appendChild(document.createTextNode(dcfg.full));
+    var cpct=document.createElement('div');cpct.className='dom-card-pct';cpct.style.color=dcfg.bg;cpct.textContent=dpct+'%';
+    top.appendChild(cname);top.appendChild(cpct);
+    var label=document.createElement('span');label.className='dom-label sans';label.style.background=dlb.c;label.textContent=dlb.l;
+    var track=document.createElement('div');track.className='dom-track';
+    var fill=document.createElement('div');fill.className='dom-fill';
+    fill.setAttribute('data-w',dpct);fill.style.background=dcfg.bg;
+    track.appendChild(fill);
+    dfElements.push(fill);
+    card.appendChild(top);card.appendChild(label);card.appendChild(track);
+    gridFrag.appendChild(card);
   }
+  grid.appendChild(gridFrag);
   /* Animate domain bars */
   setTimeout(function(){
-    var df=grid.querySelectorAll('.dom-fill');
+    var df=dfElements;
     for(var fi=0;fi<df.length;fi++) df[fi].style.width=df[fi].getAttribute('data-w')+'%';
   },350);
 
   /* ── Population comparison ───────────────────── */
   var pop=document.getElementById('pop-rows');pop.innerHTML='';
+  var popFrag=document.createDocumentFragment();
+  var popAvgBars=[];
+  var popYouBars=[];
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
     /* Derive a "you beat X% of test-takers" stat per domain */
     var beat=Math.min(99,Math.max(1,Math.round(50+(pyou-pavg)*0.7)));
     var row=document.createElement('div');row.className='pop-row';
-    row.innerHTML=
-      '<div class="pop-head">'
-        +'<div class="pop-name sans"><span class="pdot" style="background:'+pcfg.bg+'"></span>'+pcfg.full+'</div>'
-        +'<div class="pop-you sans" style="color:'+pcfg.bg+'">You: '+pyou+'%  &nbsp;&bull;&nbsp;  Beat '+beat+'% of test-takers</div>'
-      +'</div>'
-      +'<div class="pop-bars">'
-        +'<div class="pop-avg-bar" data-w="'+pavg+'"></div>'
-        +'<div class="pop-you-bar" data-w="'+pyou+'" style="background:'+pcfg.bg+'"></div>'
-      +'</div>';
-    pop.appendChild(row);
+    var head=document.createElement('div');head.className='pop-head';
+    var name=document.createElement('div');name.className='pop-name sans';
+    var dot=document.createElement('span');dot.className='pdot';dot.style.background=pcfg.bg;
+    name.appendChild(dot);name.appendChild(document.createTextNode(pcfg.full));
+    var you=document.createElement('div');you.className='pop-you sans';you.style.color=pcfg.bg;
+    you.innerHTML='You: '+pyou+'%  &nbsp;&bull;&nbsp;  Beat '+beat+'% of test-takers'; // using innerHTML here since the original had HTML entities, textContent would escape them, and this doesn't use unsafe inputs
+    head.appendChild(name);head.appendChild(you);
+    var bars=document.createElement('div');bars.className='pop-bars';
+    var ab=document.createElement('div');ab.className='pop-avg-bar';ab.setAttribute('data-w',pavg);
+    var yb=document.createElement('div');yb.className='pop-you-bar';yb.setAttribute('data-w',pyou);yb.style.background=pcfg.bg;
+    bars.appendChild(ab);bars.appendChild(yb);
+    popAvgBars.push(ab);popYouBars.push(yb);
+    row.appendChild(head);row.appendChild(bars);
+    popFrag.appendChild(row);
   }
+  pop.appendChild(popFrag);
   setTimeout(function(){
-    var ab=pop.querySelectorAll('.pop-avg-bar');
-    var yb=pop.querySelectorAll('.pop-you-bar');
+    var ab=popAvgBars;
+    var yb=popYouBars;
     for(var bi=0;bi<ab.length;bi++) ab[bi].style.width=ab[bi].getAttribute('data-w')+'%';
     for(var bi2=0;bi2<yb.length;bi2++) yb[bi2].style.width=yb[bi2].getAttribute('data-w')+'%';
   },500);
