@@ -523,6 +523,8 @@ var S={name:"You",age:25,qs:[],idx:0,answers:[],chosen:null,tid:null,elapsed:0};
 function shuf(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t;}return b;}
 
 var _gS_cache = null;
+var _renderQ_cache = null;
+
 function gS(id){
   if(!_gS_cache) {
     _gS_cache = {
@@ -562,14 +564,26 @@ function renderQ(){
   var cfg=CC[q.c]||{bg:"#1C7070",full:q.c};
   S.chosen=null;S.elapsed=0;
 
+  if(!_renderQ_cache) {
+    _renderQ_cache = {
+      hdr: document.getElementById('hdr-r'),
+      pb: document.getElementById('pb'),
+      qtag: document.getElementById('qtag'),
+      qpt: document.getElementById('qpt'),
+      qtmr: document.getElementById('qtmr'),
+      qcw: document.getElementById('qcw'),
+      bnext: document.getElementById('bnext')
+    };
+  }
+
   /* Header */
-  document.getElementById('hdr-r').innerHTML=
+  _renderQ_cache.hdr.innerHTML=
     '<span class="dpill sans" style="background:'+DCOLOR[q.p]+'">'+DLABEL[q.p]+'</span>&nbsp;<strong>'+(S.idx+1)+'</strong> / '+S.qs.length;
-  document.getElementById('pb').style.width=((S.idx/S.qs.length)*100)+'%';
-  document.getElementById('qtag').textContent=cfg.full;
-  document.getElementById('qtag').style.background=cfg.bg;
-  document.getElementById('qpt').textContent='Question '+(S.idx+1)+' of '+S.qs.length;
-  var tmr=document.getElementById('qtmr');
+  _renderQ_cache.pb.style.width=((S.idx/S.qs.length)*100)+'%';
+  _renderQ_cache.qtag.textContent=cfg.full;
+  _renderQ_cache.qtag.style.background=cfg.bg;
+  _renderQ_cache.qpt.textContent='Question '+(S.idx+1)+' of '+S.qs.length;
+  var tmr=_renderQ_cache.qtmr;
   tmr.className='qtmr'+(q.fast?' fast':'');
 
   /* Build HTML */
@@ -595,8 +609,8 @@ function renderQ(){
   for(var i=0;i<q.o.length;i++) h+='<button class="opt sans" onclick="pick('+i+')">'+q.o[i]+'</button>';
   h+='</div>';
 
-  document.getElementById('qcw').innerHTML=h;
-  var nb=document.getElementById('bnext');
+  _renderQ_cache.qcw.innerHTML=h;
+  var nb=_renderQ_cache.bnext;
   nb.classList.remove('vis');
   nb.innerHTML=(S.idx>=S.qs.length-1)?'View Results &#8594;':'Next &#8594;';
   startTimer(q.fast?20:60);
