@@ -118,11 +118,11 @@ describe('CognIQ Application', () => {
 
       window.doSetup();
 
-      expect(ageInput.style.borderColor).toMatch(/#b83232/i);
+      expect(ageInput.classList.contains('error')).toBe(true);
       expect(ageInput.placeholder).toBe('Enter age 10 to 80');
 
       jest.runAllTimers();
-      expect(ageInput.style.borderColor).toBe('');
+      expect(ageInput.classList.contains('error')).toBe(false);
       jest.useRealTimers();
     });
 
@@ -133,11 +133,11 @@ describe('CognIQ Application', () => {
 
       window.doSetup();
 
-      expect(ageInput.style.borderColor).toMatch(/#b83232/i);
+      expect(ageInput.classList.contains('error')).toBe(true);
       expect(ageInput.placeholder).toBe('Enter age 10 to 80');
 
       jest.runAllTimers();
-      expect(ageInput.style.borderColor).toBe('');
+      expect(ageInput.classList.contains('error')).toBe(false);
       jest.useRealTimers();
     });
 

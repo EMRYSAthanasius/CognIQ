@@ -74,6 +74,7 @@ h1,h2,h3{font-family:Georgia,serif;letter-spacing:-.02em;color:#1A1A1A}
 .fl{font-family:-apple-system,sans-serif;display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#999;margin-bottom:7px}
 .fi{width:100%;border:1.5px solid #DDD5C8;border-radius:8px;padding:12px 14px;font-size:15px;font-family:-apple-system,sans-serif;color:#1A1A1A;background:#FAF5EF;outline:none;transition:border-color .15s;display:block}
 .fi:focus{border-color:#1C7070;background:#fff}
+.fi.error{border-color:#B83232 !important}
 .fi::placeholder{color:#bbb}
 select.fi option{background:#fff;color:#1A1A1A}
 .ntc{background:#FDF0E8;border:1px solid #F5C9A8;border-radius:8px;padding:14px 18px;margin-bottom:24px;font-family:-apple-system,sans-serif;font-size:13px;color:#7A3A10;line-height:1.65}
@@ -546,7 +547,7 @@ function gS(id){
 ════════════════════════════════════════ */
 function doSetup(){
   var ae=document.getElementById('iage'),ag=parseInt(ae.value,10);
-  if(!ag||ag<10||ag>80){ae.style.borderColor='#B83232';ae.placeholder='Enter age 10 to 80';setTimeout(function(){ae.style.borderColor='';},2400);return;}
+  if(!ag||ag<10||ag>80){ae.classList.add('error');ae.placeholder='Enter age 10 to 80';setTimeout(function(){ae.classList.remove('error');},2400);return;}
   S.name=(document.getElementById('iname').value||'').trim()||'You';
   S.age=ag;
   S.qs=shuf(EASY).concat(shuf(MEDIUM)).concat(shuf(HARD));
