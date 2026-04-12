@@ -675,25 +675,8 @@ function pct(iq){var z=(iq-100)/15;return Math.max(1,Math.min(99,Math.round(100/
 /* ════════════════════════════════════════
    RESULTS
 ════════════════════════════════════════ */
-function showResults(){
-  gS('s-results');
-  var raw=0,mx=0;
-  for(var i=0;i<S.answers.length;i++){raw+=S.answers[i].pts;mx+=S.answers[i].max;}
-  var iq=calcIQ(raw,mx,S.age),cl=clsIQ(iq),p=pct(iq);
-
-  document.getElementById('rlb').textContent=S.name!=='You'?S.name+"'s IQ Result":"Your IQ Result";
-  var cur=60,el=document.getElementById('rsco');
-  var ck=setInterval(function(){cur+=Math.max(1,Math.ceil((iq-cur)/5));if(cur>=iq){cur=iq;clearInterval(ck);}el.textContent=cur;},28);
-  document.getElementById('rcls').textContent=cl;
-  document.getElementById('rpct').textContent='Top '+(100-p)+'% of the population  \u2022  '+p+'th percentile';
-  setTimeout(function(){document.getElementById('gpin').style.left=Math.max(2,Math.min(98,((iq-60)/(162-60))*100))+'%';},280);
-
-  /* ── Domain % scores ────────────────────────── */
-  /* Population averages (simulated from psychometric literature) */
-  var POP_AVG={LA:55,MA:60,PS:52,VR:62,WM:50,SP:65,SR:57};
-  var CATS=["LA","MA","PS","VR","WM","SP","SR"];
+function calcDomainStats(CATS){
   var catPcts={};
-
   var stats = {LA:{p:0,m:0},MA:{p:0,m:0},PS:{p:0,m:0},VR:{p:0,m:0},WM:{p:0,m:0},SP:{p:0,m:0},SR:{p:0,m:0}};
   for(var ai=0;ai<S.answers.length;ai++){
     var ans=S.answers[ai],s=stats[ans.c];
@@ -703,16 +686,27 @@ function showResults(){
     var cat=CATS[ci],s=stats[cat];
     catPcts[cat]=s.m?Math.round((s.p/s.m)*100):0;
   }
+  return catPcts;
+}
 
-  /* Domain label by score */
-  function domLabel(p2){
-    if(p2>=90)return{l:"Exceptional",c:"#145858"};
-    if(p2>=75)return{l:"Above Average",c:"#1A7A4A"};
-    if(p2>=55)return{l:"Average",c:"#2563A8"};
-    if(p2>=35)return{l:"Below Average",c:"#C47C20"};
-    return{l:"Weak",c:"#B83232"};
-  }
+function renderOverallIQ(iq, cl, p){
+  document.getElementById('rlb').textContent=S.name!=='You'?S.name+"'s IQ Result":"Your IQ Result";
+  var cur=60,el=document.getElementById('rsco');
+  var ck=setInterval(function(){cur+=Math.max(1,Math.ceil((iq-cur)/5));if(cur>=iq){cur=iq;clearInterval(ck);}el.textContent=cur;},28);
+  document.getElementById('rcls').textContent=cl;
+  document.getElementById('rpct').textContent='Top '+(100-p)+'% of the population  \u2022  '+p+'th percentile';
+  setTimeout(function(){document.getElementById('gpin').style.left=Math.max(2,Math.min(98,((iq-60)/(162-60))*100))+'%';},280);
+}
 
+function domLabel(p2){
+  if(p2>=90)return{l:"Exceptional",c:"#145858"};
+  if(p2>=75)return{l:"Above Average",c:"#1A7A4A"};
+  if(p2>=55)return{l:"Average",c:"#2563A8"};
+  if(p2>=35)return{l:"Below Average",c:"#C47C20"};
+  return{l:"Weak",c:"#B83232"};
+}
+
+function renderDomainScores(CATS, catPcts){
   var grid=document.getElementById('dom-grid');grid.innerHTML='';
   for(var di=0;di<CATS.length;di++){
     var dcat=CATS[di],dpct=catPcts[dcat],dlb=domLabel(dpct),dcfg=CC[dcat];
@@ -731,8 +725,9 @@ function showResults(){
     var df=grid.querySelectorAll('.dom-fill');
     for(var fi=0;fi<df.length;fi++) df[fi].style.width=df[fi].getAttribute('data-w')+'%';
   },350);
+}
 
-  /* ── Population comparison ───────────────────── */
+function renderPopulationComparison(CATS, POP_AVG, catPcts){
   var pop=document.getElementById('pop-rows');pop.innerHTML='';
   for(var pi=0;pi<CATS.length;pi++){
     var pcat=CATS[pi],pyou=catPcts[pcat],pavg=POP_AVG[pcat],pcfg=CC[pcat];
@@ -756,8 +751,9 @@ function showResults(){
     for(var bi=0;bi<ab.length;bi++) ab[bi].style.width=ab[bi].getAttribute('data-w')+'%';
     for(var bi2=0;bi2<yb.length;bi2++) yb[bi2].style.width=yb[bi2].getAttribute('data-w')+'%';
   },500);
+}
 
-  /* ── IQ ref table ────────────────────────────── */
+function renderIQReferenceTable(iq){
   var REFS=[
     {r:"145+",l:"Genius",p:"<0.2%",lo:145,hi:999},
     {r:"130-144",l:"Gifted",p:"2.1%",lo:130,hi:144},
@@ -775,6 +771,29 @@ function showResults(){
     tr2.innerHTML='<td>'+rv.r+'</td><td>'+rv.l+'</td><td>'+rv.p+'</td>';
     tbl.appendChild(tr2);
   }
+}
+
+function showResults(){
+  gS('s-results');
+  var raw=0,mx=0;
+  for(var i=0;i<S.answers.length;i++){raw+=S.answers[i].pts;mx+=S.answers[i].max;}
+  var iq=calcIQ(raw,mx,S.age),cl=clsIQ(iq),p=pct(iq);
+
+  renderOverallIQ(iq, cl, p);
+
+  /* ── Domain % scores ────────────────────────── */
+  /* Population averages (simulated from psychometric literature) */
+  var POP_AVG={LA:55,MA:60,PS:52,VR:62,WM:50,SP:65,SR:57};
+  var CATS=["LA","MA","PS","VR","WM","SP","SR"];
+
+  var catPcts = calcDomainStats(CATS);
+  renderDomainScores(CATS, catPcts);
+
+  /* ── Population comparison ───────────────────── */
+  renderPopulationComparison(CATS, POP_AVG, catPcts);
+
+  /* ── IQ ref table ────────────────────────────── */
+  renderIQReferenceTable(iq);
 }
 
 /* ════════════════════════════════════════
