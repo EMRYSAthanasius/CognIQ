@@ -201,4 +201,124 @@ describe('CognIQ Application', () => {
       expect(document.getElementById('qtag').textContent).not.toBe('Loading');
     });
   });
+
+  describe('doShare functionality', () => {
+    let originalNavigator;
+
+    beforeEach(() => {
+      // Mock DOM elements required by doShare
+      document.getElementById('rsco').textContent = '125';
+      document.getElementById('rcls').textContent = 'Superior Intelligence';
+
+      const shareBtn = document.createElement('button');
+      shareBtn.id = 'rbtn';
+      shareBtn.textContent = 'Share Result';
+      document.body.appendChild(shareBtn);
+
+      // Save original navigator to restore later
+      originalNavigator = window.navigator;
+    });
+
+    afterEach(() => {
+      // Restore original navigator
+      Object.defineProperty(window, 'navigator', {
+        value: originalNavigator,
+        writable: true,
+        configurable: true
+      });
+
+      const btn = document.getElementById('rbtn');
+      if (btn) btn.remove();
+
+      jest.useRealTimers();
+    });
+
+    it('should use navigator.share if available', async () => {
+      const mockShare = jest.fn().mockResolvedValue();
+
+      Object.defineProperty(window, 'navigator', {
+        value: {
+          share: mockShare
+        },
+        writable: true,
+        configurable: true
+      });
+
+      window.doShare();
+
+      expect(mockShare).toHaveBeenCalledWith({
+        title: 'My IQ Score',
+        text: 'I scored 125 on the CognIQ assessment!\nClassification: Superior Intelligence\n\nTake the test: ' + window.location.href
+      });
+    });
+
+    it('should fallback to navigator.clipboard.writeText if share is unavailable', async () => {
+      jest.useFakeTimers();
+      const mockWriteText = jest.fn().mockResolvedValue();
+
+      Object.defineProperty(window, 'navigator', {
+        value: {
+          clipboard: {
+            writeText: mockWriteText
+          }
+        },
+        writable: true,
+        configurable: true
+      });
+
+      window.doShare();
+
+      expect(mockWriteText).toHaveBeenCalledWith(
+        'I scored 125 on the CognIQ assessment!\nClassification: Superior Intelligence\n\nTake the test: ' + window.location.href
+      );
+
+      // Resolve the promises
+      await Promise.resolve();
+
+      // flashB changes the button text
+      const btn = document.getElementById('rbtn');
+      expect(btn.textContent).toBe('Copied!');
+
+      // Advance timers to trigger setTimeout in flashB
+      jest.advanceTimersByTime(2400);
+
+      expect(btn.textContent).toBe('Share Result');
+    });
+
+    it('should silently catch errors from navigator.share', () => {
+      const mockShare = jest.fn().mockRejectedValue(new Error('Share failed'));
+
+      Object.defineProperty(window, 'navigator', {
+        value: {
+          share: mockShare
+        },
+        writable: true,
+        configurable: true
+      });
+
+      // Should not throw
+      expect(() => {
+        window.doShare();
+      }).not.toThrow();
+    });
+
+    it('should silently catch errors from navigator.clipboard.writeText', () => {
+      const mockWriteText = jest.fn().mockRejectedValue(new Error('Clipboard failed'));
+
+      Object.defineProperty(window, 'navigator', {
+        value: {
+          clipboard: {
+            writeText: mockWriteText
+          }
+        },
+        writable: true,
+        configurable: true
+      });
+
+      // Should not throw
+      expect(() => {
+        window.doShare();
+      }).not.toThrow();
+    });
+  });
 });
