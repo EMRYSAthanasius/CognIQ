@@ -107,6 +107,77 @@ describe('CognIQ Application', () => {
         expect(window.pct(0)).toBe(1);   // Min
       });
     });
+
+    describe('timeUp', () => {
+      it('should handle time up for a normal question', () => {
+        // Setup initial state
+        window.S = {
+          idx: 0,
+          qs: [{ c: 'test_c', p: 5, fast: false }],
+          answers: [],
+          chosen: null
+        };
+
+        // Spy on lockOpts if it exists, or provide a dummy
+        const originalLockOpts = window.lockOpts;
+        window.lockOpts = jest.fn();
+
+        window.timeUp();
+
+        // Assert state changes
+        expect(window.S.chosen).toBe(-1);
+        expect(window.S.answers.length).toBe(1);
+        expect(window.S.answers[0]).toEqual({
+          c: 'test_c',
+          p: 5,
+          ok: false,
+          t: 60,
+          pts: 0,
+          max: 5
+        });
+
+        // Assert UI updates
+        expect(window.lockOpts).toHaveBeenCalledWith(-1);
+        expect(document.getElementById('bnext').classList.contains('vis')).toBe(true);
+
+        // Restore
+        window.lockOpts = originalLockOpts;
+      });
+
+      it('should handle time up for a fast question', () => {
+        // Setup initial state
+        window.S = {
+          idx: 0,
+          qs: [{ c: 'test_c2', p: 3, fast: true }],
+          answers: [],
+          chosen: null
+        };
+
+        const originalLockOpts = window.lockOpts;
+        window.lockOpts = jest.fn();
+
+        window.timeUp();
+
+        // Assert state changes
+        expect(window.S.chosen).toBe(-1);
+        expect(window.S.answers.length).toBe(1);
+        expect(window.S.answers[0]).toEqual({
+          c: 'test_c2',
+          p: 3,
+          ok: false,
+          t: 20,
+          pts: 0,
+          max: 3
+        });
+
+        // Assert UI updates
+        expect(window.lockOpts).toHaveBeenCalledWith(-1);
+        expect(document.getElementById('bnext').classList.contains('vis')).toBe(true);
+
+        // Restore
+        window.lockOpts = originalLockOpts;
+      });
+    });
   });
 
   describe('advQ Progression', () => {
