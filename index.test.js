@@ -107,6 +107,66 @@ describe('CognIQ Application', () => {
         expect(window.pct(0)).toBe(1);   // Min
       });
     });
+
+    describe('renderQ', () => {
+      beforeEach(() => {
+        window.S = {
+          qs: [
+            { c: 'TEST1', p: 1, fast: false, q: 'Standard question?', o: ['A', 'B'] },
+            { c: 'TEST2', p: 2, fast: true, memseq: '1-2-3', svgKey: 'testSvg', m: [['1', '2'], ['3', '?']], seq: '1, 2, 3', q: 'Complex question?', o: ['A', 'B', 'C'] },
+            { c: 'UNKNOWN', p: 1, fast: false, q: 'Unknown config?', o: ['A'] }
+          ],
+          idx: 0,
+          answers: [],
+          chosen: null
+        };
+        window.CC = {
+          'TEST1': { bg: '#111', full: 'Test Category 1' },
+          'TEST2': { bg: '#222', full: 'Test Category 2' }
+        };
+        window.DCOLOR = { 1: '#c1', 2: '#c2' };
+        window.DLABEL = { 1: 'Level 1', 2: 'Level 2' };
+        window.SVGS = { testSvg: () => '<svg>test</svg>' };
+        jest.spyOn(window, 'startTimer').mockImplementation(() => {});
+      });
+
+      afterEach(() => {
+        jest.restoreAllMocks();
+      });
+
+      it('should render a standard question and start timer with 60s', () => {
+        window.renderQ();
+
+        expect(document.getElementById('qtag').textContent).toBe('Test Category 1');
+        expect(document.querySelector('.qinst').textContent).toBe('Standard question?');
+        expect(document.querySelectorAll('.opt').length).toBe(2);
+        expect(window.startTimer).toHaveBeenCalledWith(60);
+      });
+
+      it('should render a fast/complex question and start timer with 20s', () => {
+        window.S.idx = 1;
+        window.renderQ();
+
+        const html = document.getElementById('qcw').innerHTML;
+        expect(html).toContain('Speed Round');
+        expect(html).toContain('memseq');
+        expect(html).toContain('svgq');
+        expect(html).toContain('mtx');
+        expect(html).toContain('qform');
+        expect(document.querySelectorAll('.opt').length).toBe(3);
+        expect(window.startTimer).toHaveBeenCalledWith(20);
+      });
+
+      it('should handle missing category config', () => {
+        window.S.idx = 2;
+        window.renderQ();
+
+        expect(document.getElementById('qtag').textContent).toBe('UNKNOWN');
+        // Depending on the JSDOM parsing, the color might be returned as hex or rgb
+        const bg = document.getElementById('qtag').style.background;
+        expect(bg === 'rgb(28, 112, 112)' || bg === '#1c7070' || bg === '#1C7070').toBe(true);
+      });
+    });
   });
 
   describe('advQ Progression', () => {
