@@ -201,4 +201,54 @@ describe('CognIQ Application', () => {
       expect(document.getElementById('qtag').textContent).not.toBe('Loading');
     });
   });
+
+  describe('showResults Function', () => {
+    beforeEach(() => {
+      jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+      jest.useRealTimers();
+    });
+
+    it('should calculate and display results correctly', () => {
+      window.S.name = 'Alice';
+      window.S.age = 25;
+      window.S.answers = [
+        {c: 'LA', pts: 1, max: 1},
+        {c: 'MA', pts: 2, max: 2},
+        {c: 'PS', pts: 0, max: 1}, // failed
+        {c: 'VR', pts: 1, max: 2},
+      ];
+
+      window.showResults();
+
+      expect(document.getElementById('s-results').classList.contains('on')).toBe(true);
+      expect(document.getElementById('rlb').textContent).toBe("Alice's IQ Result");
+
+      jest.runAllTimers();
+
+      expect(Number(document.getElementById('rsco').textContent)).toBeGreaterThan(60);
+      expect(document.getElementById('rcls').textContent).not.toBe('—');
+      expect(document.getElementById('rpct').textContent).not.toBe('—');
+
+      const grid = document.getElementById('dom-grid');
+      expect(grid.children.length).toBe(7); // 7 domains
+
+      const popRows = document.getElementById('pop-rows');
+      expect(popRows.children.length).toBe(7);
+
+      const refTable = document.getElementById('rref');
+      expect(refTable.children.length).toBe(8); // 8 references
+      expect(refTable.querySelectorAll('.hl').length).toBe(1); // 1 highlighted
+    });
+
+    it('should show default title if name is You', () => {
+      window.S.name = 'You';
+      window.S.answers = [];
+
+      window.showResults();
+      expect(document.getElementById('rlb').textContent).toBe("Your IQ Result");
+    });
+  });
 });
