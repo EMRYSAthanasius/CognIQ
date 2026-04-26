@@ -670,14 +670,34 @@ function advQ(){
 /* ════════════════════════════════════════
    IQ CALCULATION
 ════════════════════════════════════════ */
-function calcIQ(r,mx,age){
-  if(!mx) return 100;
-  var p=r/mx,adj=0;
-  if(age<14)adj=.10;else if(age<18)adj=.07;else if(age<22)adj=.04;
-  else if(age<28)adj=.02;else if(age<40)adj=0;else if(age<50)adj=.03;
-  else if(age<60)adj=.06;else if(age<70)adj=.09;else adj=.12;
-  var ap=Math.max(.01,Math.min(.99,p+adj));
-  return Math.max(60,Math.min(162,Math.round(100+15*(Math.log(ap/(1-ap))/1.05))));
+function calcIQ(r, mx, age) {
+  if (!mx) return 100;
+
+  var p = r / mx;
+  var adj = 0;
+
+  if (age < 14) {
+    adj = 0.10;
+  } else if (age < 18) {
+    adj = 0.07;
+  } else if (age < 22) {
+    adj = 0.04;
+  } else if (age < 28) {
+    adj = 0.02;
+  } else if (age < 40) {
+    adj = 0;
+  } else if (age < 50) {
+    adj = 0.03;
+  } else if (age < 60) {
+    adj = 0.06;
+  } else if (age < 70) {
+    adj = 0.09;
+  } else {
+    adj = 0.12;
+  }
+
+  var ap = Math.max(0.01, Math.min(0.99, p + adj));
+  return Math.max(60, Math.min(162, Math.round(100 + 15 * (Math.log(ap / (1 - ap)) / 1.05))));
 }
 function clsIQ(iq){
   if(iq>=145)return"Genius / Profoundly Gifted";if(iq>=130)return"Gifted";
